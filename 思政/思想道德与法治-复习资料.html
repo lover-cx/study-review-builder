@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《思想道德与法治》期末复习资料</title>
+<style>
+:root{
+  --primary:#2E74B5; --primary-dark:#1F4E79; --bg:#F4F8FC; --card:#FFFFFF;
+  --text:#2C3E50; --muted:#8496A9; --line:#E3ECF5; --glass:rgba(255,255,255,.86);
+  --s5:#E74C3C; --s4:#E67E22; --s3:#D9B40F; --s2:#3498DB; --s1:#95A5A6;
+  --gcanvas:#EDF2F9; --gdots:#D7E1EF; --glabel:#2C3E50; --gpanel:rgba(255,255,255,.9);
+  --gpanel-text:#4A5B6E; --shadow:0 4px 18px rgba(31,78,121,.08);
+}
+html[data-theme="dark"]{
+  --primary:#5FA8E8; --primary-dark:#7FB3E8; --bg:#141924; --card:#1E2634;
+  --text:#D5DEE8; --muted:#7E8CA0; --line:#2A3444; --glass:rgba(23,29,40,.86);
+  --s5:#FF7B6B; --s4:#F59E56; --s3:#E8CE5A; --s2:#6FB4F0; --s1:#9FB0C4;
+  --gcanvas:#0E131B; --gdots:#1C2531; --glabel:#C7D3E3; --gpanel:rgba(16,21,28,.88);
+  --gpanel-text:#C7D3E3; --shadow:0 4px 18px rgba(0,0,0,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--bg);color:var(--text);transition:background .25s,color .25s}
+/* ---------- 顶栏 ---------- */
+header{position:sticky;top:0;z-index:50;background:var(--glass);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding:10px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:17px;color:var(--primary-dark);white-space:nowrap}
+header .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:26vw}
+.tabs{display:flex;gap:6px}
+.tab{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:5px 15px;font-size:13px;cursor:pointer;color:var(--primary-dark);transition:.15s}
+.tab.active,.tab:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:4px 12px;font-size:12px;cursor:pointer;color:var(--text)}
+.chip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+/* ---------- 主题控件 ---------- */
+.theme-ctl{display:flex;align-items:center;gap:8px}
+.right-ctl{margin-left:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:50%;width:34px;height:34px;font-size:16px;cursor:pointer;line-height:1;color:var(--text)}
+.tbtn:hover{border-color:var(--primary)}
+#themePanel{position:absolute;top:56px;right:16px;z-index:80;background:var(--gpanel);backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:14px;padding:16px;width:250px;box-shadow:var(--shadow);display:none}
+#themePanel.open{display:block}
+#themePanel h4{font-size:13px;color:var(--primary-dark);margin-bottom:12px}
+#themePanel .row{display:flex;align-items:center;gap:10px;margin:10px 0;font-size:12px;color:var(--gpanel-text)}
+#themePanel input[type=range]{flex:1;accent-color:var(--primary)}
+#themePanel .val{width:38px;text-align:right;color:var(--muted)}
+#themePanel .reset{width:100%;margin-top:10px;border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:18px;padding:6px;font-size:12px;cursor:pointer}
+#eyeCareBtn{width:100%;border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:18px;padding:8px;font-size:12.5px;cursor:pointer;margin-bottom:4px;transition:.15s}
+#eyeCareBtn.on{background:rgba(230,126,34,.2);border-color:var(--s4);color:#B65A17;font-weight:bold}
+#eyeCareBtn .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#B0BEC5;margin-right:6px;vertical-align:1px}
+#eyeCareBtn.on .dot{background:#E67E22;box-shadow:0 0 6px rgba(230,126,34,.8)}
+/* ---------- 亮度/色调覆盖层 ---------- */
+#dimLayer,#tintLayer{position:fixed;inset:0;pointer-events:none;z-index:200}
+/* ---------- 布局 ---------- */
+.wrap{display:flex;max-width:1280px;margin:0 auto;gap:18px;padding:18px}
+nav.side{width:225px;flex:none;position:sticky;top:64px;max-height:calc(100vh - 84px);overflow:auto}
+nav.side .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+nav.side h3{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:normal}
+nav.side a{display:block;padding:5px 8px;border-radius:8px;font-size:13px;color:var(--text);text-decoration:none;border-left:2.5px solid transparent}
+nav.side a:hover{background:rgba(95,168,232,.12);border-left-color:var(--primary)}
+main{flex:1;min-width:0}
+.section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px;scroll-margin-top:74px}
+.overview{background:linear-gradient(135deg,rgba(95,168,232,.12),var(--card))}
+.overview p{font-size:13.5px;line-height:1.8;margin:4px 0}
+h2.chapter{font-size:18px;color:var(--primary-dark);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ch-overview{font-size:12.5px;color:var(--muted);margin-top:4px}
+.kp{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:12px;background:var(--card)}
+.kp-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.kp-head .num{font-size:13.5px;font-weight:bold;color:var(--primary-dark)}
+.badge{font-size:11px;padding:2px 9px;border-radius:10px;color:#fff}
+.dim{background:var(--primary);opacity:.9}
+.hits{background:rgba(39,117,75,.14);color:#27754B;font-size:11px;padding:2px 9px;border-radius:10px}
+html[data-theme="dark"] .hits{color:#7FC79B}
+.kp-body p{font-size:13.5px;line-height:1.75;margin:5px 0}
+.kp-body .ex{font-size:12.5px;color:#B03A2E;background:rgba(231,76,60,.08);border-left:3px solid var(--s5);padding:5px 10px;border-radius:6px;margin-top:6px}
+.hidden{display:none!important}
+.kw{display:flex;gap:10px;flex-wrap:wrap}
+.kw span{background:rgba(95,168,232,.14);color:var(--primary-dark);font-size:12.5px;padding:6px 12px;border-radius:8px}
+.chart .row{display:flex;align-items:center;gap:10px;margin:7px 0}
+.chart .name{width:220px;font-size:12.5px;text-align:right;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chart .bar{height:16px;border-radius:8px;background:var(--primary);min-width:4px}
+.chart .val{font-size:12px;color:var(--muted)}
+/* ---------- 知识图谱 ---------- */
+#graphView{position:relative;height:calc(100vh - 62px);margin:0 auto;max-width:1280px;padding:0 18px}
+#graphView .tip{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:5;
+  background:var(--gpanel);color:var(--gpanel-text);font-size:12px;padding:6px 16px;border-radius:16px;backdrop-filter:blur(6px);border:1px solid var(--line)}
+#graphView .legend{position:absolute;left:30px;top:52px;z-index:5;background:var(--gpanel);
+  color:var(--gpanel-text);font-size:11.5px;padding:10px 14px;border-radius:10px;line-height:1.9;backdrop-filter:blur(6px);border:1px solid var(--line)}
+#graphView .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+#graphView .legend .sw{display:inline-block;width:14px;border-top:2px dashed #7E8CA0;margin-right:6px;vertical-align:3px}
+#gtools{position:absolute;right:30px;top:52px;z-index:5;display:flex;gap:6px}
+#gtools button{border:1px solid var(--line);background:var(--gpanel);color:var(--gpanel-text);font-size:12px;
+  padding:6px 12px;border-radius:16px;cursor:pointer;backdrop-filter:blur(6px)}
+#gtools button:hover{border-color:var(--primary);color:var(--primary-dark)}
+#gsvgBox{width:100%;height:100%;background:var(--gcanvas);border-radius:14px;cursor:grab;
+  position:relative;overflow:hidden;border:1px solid var(--line);
+  background-image:radial-gradient(var(--gdots) 1.2px,transparent 1.2px);background-size:24px 24px;transition:background .25s}
+#gsvgBox:active{cursor:grabbing}
+#gsvg{width:100%;height:100%;display:block}
+#gsvg text{pointer-events:none;user-select:none;paint-order:stroke;stroke:var(--gcanvas);stroke-width:4.5px;stroke-linejoin:round;transition:stroke .25s}
+.gnode{cursor:pointer;transition:opacity .18s}
+#glinks line{transition:opacity .18s,stroke-width .18s}
+/* ---------- 自测版 ---------- */
+#quizView{max-width:760px;margin:0 auto;padding:18px}
+.q-meta{font-size:12.5px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.quiz-awrap{position:relative;margin-top:10px}
+.quiz-body{filter:blur(7px);user-select:none;pointer-events:none;transition:filter .3s}
+.q-card.revealed .quiz-body{filter:none;user-select:auto;pointer-events:auto}
+.quiz-mask{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(127,131,166,.10);border-radius:8px;transition:background .25s}
+.quiz-mask:hover{background:rgba(46,116,181,.12)}
+.quiz-mask span{background:var(--primary);color:#fff;font-size:13px;padding:8px 22px;border-radius:18px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.q-card.revealed .quiz-mask{display:none}
+.q-meta b{color:var(--primary-dark)}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
+.q-title{font-size:19px;font-weight:bold;color:var(--primary-dark);line-height:1.6}
+.q-hint{font-size:13px;color:var(--muted);margin-top:10px}
+.q-answer{margin-top:16px;border-top:1px dashed var(--line);padding-top:14px}
+.q-answer p{font-size:14px;line-height:1.8;margin:5px 0}
+.q-answer .ex{font-size:12.5px;color:#B03A2E;background:rgba(231,76,60,.08);border-left:3px solid var(--s5);padding:5px 10px;border-radius:6px;margin-top:8px}
+.q-btns{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.btn{border:none;border-radius:20px;padding:9px 26px;font-size:14px;cursor:pointer;transition:.15s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ok{background:rgba(39,117,75,.12);color:#27754B;border:1px solid rgba(39,117,75,.3)}
+.btn-again{background:rgba(230,126,34,.14);color:#B65A17;border:1px solid rgba(230,126,34,.35)}
+.btn-ghost{background:var(--card);color:var(--muted);border:1px solid var(--line)}
+.q-progress{height:6px;background:rgba(95,168,232,.18);border-radius:4px;overflow:hidden;margin-bottom:16px}
+.q-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#5FA8E8);border-radius:4px;transition:width .3s}
+.q-summary{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+.q-summary h2{color:var(--primary-dark);font-size:20px;margin-bottom:10px}
+.q-summary .stat{display:flex;gap:14px;margin:14px 0}
+.q-summary .stat div{flex:1;background:var(--bg);border-radius:12px;padding:14px;text-align:center}
+.q-summary .stat b{font-size:22px;display:block}
+.q-summary .stat span{font-size:12px;color:var(--muted)}
+.q-again-list{margin-top:12px}
+.q-again-list a{display:block;font-size:13.5px;color:var(--text);padding:6px 10px;border-radius:8px;text-decoration:none;border-left:2.5px solid var(--s4);background:rgba(230,126,34,.08);margin-bottom:6px}
+/* ---------- 预测试卷 ---------- */
+#examView{max-width:860px;margin:0 auto;padding:18px}
+.exam-pick{display:flex;gap:16px;flex-wrap:wrap}
+.exam-card{flex:1;min-width:260px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;cursor:pointer;transition:.18s;box-shadow:var(--shadow)}
+.exam-card:hover{border-color:var(--primary);transform:translateY(-3px)}
+.exam-card h3{color:var(--primary-dark);font-size:18px}
+.exam-card .info{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.9}
+.paper-head{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center}
+.paper-head .course{font-size:15px;color:var(--muted)}
+.paper-head .name{font-size:22px;font-weight:bold;color:var(--primary-dark);margin:6px 0}
+.paper-head .info{font-size:12.5px;color:var(--muted)}
+.sec-title{font-size:14.5px;font-weight:bold;color:var(--primary-dark);margin:20px 0 4px}
+.sec-ins{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+/* ---------- 题面材料（阅读/听力/翻译/写作材料） ---------- */
+.material-box{background:rgba(87,168,232,.08);border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:10px;padding:14px 16px;margin:10px 0;line-height:1.9}
+.material-box h4{font-size:13px;color:var(--primary-dark);margin-bottom:6px}
+.material-box p{font-size:13px;color:var(--text);margin:5px 0}
+.material-box .note{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:4px}
+.material-box .src{font-size:11px;color:var(--muted);margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
+.q-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:10px}
+.q-item .stem{font-size:13.8px;line-height:1.7;font-weight:bold}
+.q-item .score-tag{font-size:11px;color:var(--muted)}
+.opts{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+.opt{border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:9px 14px;font-size:13px;cursor:pointer;text-align:left;color:var(--text);transition:.13s}
+.opt:hover{border-color:var(--primary)}
+.opt.sel{border-color:var(--primary);background:rgba(95,168,232,.12)}
+.opt.right{border-color:#27754B;background:rgba(39,117,75,.14);color:#27754B;font-weight:bold}
+.opt.wrong{border-color:#C0392B;background:rgba(192,57,43,.1);color:#C0392B}
+.opt.disabled{cursor:default;opacity:.75}
+.opt.selected{border-color:var(--primary);background:rgba(95,168,232,.16);font-weight:bold}
+.opt.selected.disabled{opacity:.92}
+.ans-note{margin-top:10px;font-size:12.5px;line-height:1.7;border-radius:8px;padding:9px 12px}
+.ans-note.right{background:rgba(39,117,75,.1);color:#27754B}
+.ans-note.wrong{background:rgba(192,57,43,.08);color:#B03A2E}
+.exam-float{position:sticky;bottom:14px;display:flex;gap:10px;justify-content:center;margin-top:18px;z-index:10}
+.exam-score{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;text-align:center}
+.exam-score b.big{font-size:34px;color:var(--primary-dark)}
+.exam-score .subs{display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.exam-score .subs div{background:var(--bg);border-radius:12px;padding:12px 20px;font-size:13px}
+.exam-score .subs b{display:block;font-size:20px;color:var(--primary-dark)}
+.wrong-list{margin-top:12px;text-align:left}
+.wrong-list a{display:block;font-size:13px;color:var(--text);padding:7px 10px;border-radius:8px;text-decoration:none;border-left:2.5px solid var(--s5);background:rgba(231,76,60,.07);margin-bottom:6px}
+footer{text-align:center;font-size:12px;color:var(--muted);padding:16px}
+@media print{header,nav.side,.tabs,.chips,#graphView,#quizView,#examView,.theme-ctl{display:none}.wrap{padding:0}}
+@media (max-width:900px){nav.side{display:none}header .sub{display:none}}
+</style>
+</head>
+<body>
+<div id="dimLayer"></div><div id="tintLayer"></div>
+
+<header>
+  <h1>《思想道德与法治》期末复习资料</h1><div class="sub">课程：思想道德与法治 ｜ 范围：绪论 + 第1-6章 ｜ 生成日期：2026-10-28</div>
+  <div class="tabs">
+    <button class="tab active" data-view="content" onclick="switchView('content')">📖 复习资料版</button>
+    <button class="tab" data-view="graph" onclick="switchView('graph')">🕸️ 知识图谱</button>
+    <button class="tab" data-view="quiz" onclick="switchView('quiz')">📝 自测版</button>
+    <button class="tab" data-view="exam" onclick="switchView('exam')">📋 预测试卷</button>
+  </div>
+  <div class="right-ctl">
+  <div class="chips" id="filterChips">
+    <button class="chip on" data-min="0" onclick="filterStars(this)">全部</button>
+    <button class="chip" data-min="5" onclick="filterStars(this)">仅 5★</button>
+    <button class="chip" data-min="4" onclick="filterStars(this)">4★ 及以上</button>
+    <button class="chip" data-min="3" onclick="filterStars(this)">3★ 及以上</button>
+  </div>
+  <div class="theme-ctl">
+    <button class="tbtn" id="btnThemeMode" onclick="toggleThemeMode()" title="日间 / 夜间模式">🌙</button>
+    <button class="tbtn" onclick="toggleThemePanel()" title="显示调节与护眼">⚙️</button>
+  </div>
+  </div>
+  <div id="themePanel">
+    <h4>🎨 显示调节</h4>
+    <button id="eyeCareBtn" onclick="toggleEyeCare()"><span class="dot"></span>👁 护眼模式（暖光护眼）</button>
+    <div class="row"><span style="width:34px">亮度</span>
+      <input type="range" id="rgBright" min="70" max="115" value="100" oninput="onThemeSlider('b')">
+      <span class="val" id="vBright">100%</span></div>
+    <div class="row"><span style="width:34px">色调</span>
+      <input type="range" id="rgTint" min="-50" max="50" value="0" oninput="onThemeSlider('t')">
+      <span class="val" id="vTint">中性</span></div>
+    <button class="reset" onclick="resetTheme()">恢复默认</button>
+  </div>
+</header>
+
+<div class="wrap" id="contentWrap">
+  <nav class="side"><div class="box">
+    <h3>📑 大纲导航</h3><div id="outline"></div>
+  </div></nav>
+  <main id="contentView"></main>
+</div>
+
+<div id="graphView" class="hidden">
+  <div class="tip">🖱️ 滚轮缩放 ｜ 拖拽平移 ｜ 拖动节点重排 ｜ 悬停高亮关联 ｜ 点击知识点跳转</div>
+  <div class="legend" id="glegend"></div>
+  <div id="gtools">
+    <button onclick="gRelayout()">🔄 重新布局</button>
+    <button onclick="gFit()">🔎 适配视图</button>
+  </div>
+  <div id="gsvgBox"><svg id="gsvg" xmlns="http://www.w3.org/2000/svg"></svg></div>
+</div>
+
+<div id="quizView" class="hidden"></div>
+<div id="examView" class="hidden"></div>
+
+<footer>由「复习资料整合生成器」Skill 生成 ｜ 星级依据真题命中数据与 AI 综合评估 ｜ 自测版每次打开自动打乱顺序</footer>
+
+<script>
+const DATA = {"title": "《思想道德与法治》期末复习资料", "subtitle": "基于章节知识点练习、期末考试练习题与考研冲刺讲义整理", "meta": "课程：思想道德与法治 ｜ 范围：绪论 + 第1-6章 ｜ 生成日期：2026-10-28", "summary": ["本资料整合了每章知识点及练习题（00-06 共 7 份）、⭐期末考试练习题与知识点总结（含单选/多选/简答/材料/论述全套题型与答案）、全部知识点复习（4.4 万字）与考研冲刺讲义，按「绪论—人生观—理想信念—中国精神—核心价值观—道德—法治」的教材主线组织。", "复习优先级：第六章（法治）与第五章（道德）知识点最密集、题量最大，是选择题的主要得分区；第一章人生观与第二章理想信念是材料分析题的高频素材（先进人物事迹类、人生困境辨析类）；绪论分值低，考前扫一遍即可。", "背诵清单：核心价值观 24 字（三个层面）、社会公德/职业道德/家庭美德各项内容、宪法基本原则、五大法治体系、五个坚持——这五组「数字清单」几乎每年必考。", "题型画像（本课程无完整原卷，按练习题题型体系设定合理默认）：单选15题×2分＋多选5题×2分＋简答4题×5分＋材料分析2题×10分＋论述1题×20分，共100分。", "建议复习路径：先用思维导图建立六章框架 → 按星级精读正文与「数字清单」→ 自测版逐点检验 → 两套预测试卷闭卷模拟并核对答案解析。"], "keywords": ["人生观：人生目的、人生态度、人生价值的统一，人生目的居于核心地位", "人的本质：在其现实性上是一切社会关系的总和", "人生价值评价根本尺度：是否符合社会发展的客观规律、是否通过实践促进了历史的进步", "理想信念作用：昭示奋斗目标、提供前进动力、提高精神境界", "中国精神：以爱国主义为核心的民族精神＋以改革创新为核心的时代精神", "爱国主义的基本要求：爱大好河山、爱骨肉同胞、爱灿烂文化、爱自己的国家", "核心价值观 24 字：富强民主文明和谐（国家）、自由平等公正法治（社会）、爱国敬业诚信友善（公民）", "核心价值体系：马克思主义指导思想、共同理想、民族精神与时代精神、社会主义荣辱观", "道德起源：劳动是第一个历史前提；道德本质由社会经济关系的性质决定", "中华传统美德基本精神：重视整体利益、推崇仁爱、提倡人伦价值、追求精神境界、强调道德修养", "社会主义道德：核心是为人民服务，原则是集体主义", "社会公德：文明礼貌、助人为乐、爱护公物、保护环境、遵纪守法", "职业道德：爱岗敬业、诚实守信、办事公道、热情服务、奉献社会", "家庭美德：尊老爱幼、男女平等、夫妻和睦、勤俭持家、邻里团结", "道德修养方法：学思并重、省察克治、慎独自律、知行合一、积善成德", "法律运行四环节：制定（立法）、执行（执法）、适用（司法）、遵守（守法）", "宪法基本原则：党的领导、人民主权、尊重和保障人权、社会主义法治、民主集中制", "五大法治体系：法律规范体系、法治实施体系、法治监督体系、法治保障体系、党内法规体系", "法治道路五个坚持：党的领导、人民主体地位、法律面前人人平等、依法治国和以德治国相结合、从中国实际出发", "尊重维护法律权威四要求：信仰法律、遵守法律、服从法律、维护法律", "权利保障体系：宪法保障（前提基础）、立法保障（重要条件）、行政保护（关键环节）、司法保障（最后防线）"], "chapters": [{"id": "s0", "title": "绪论 担当复兴大任 成就时代新人", "overview": "课程性质与时代新人的使命担当，以选择题为主。", "importance": 3, "knowledge_points": [{"id": "s0-k1", "title": "0.1 新时代与时代新人", "importance": 4, "dimension": "记忆", "match_terms": ["新时代", "时代新人", "有理想、有本领、有担当", "中国梦", "历史方位"], "content": ["新时代是理解当前所处历史方位的关键词。中国特色社会主义进入新时代的三个「意味着」：意味着近代以来久经磨难的中华民族迎来了从站起来、富起来到强起来的伟大飞跃；意味着科学社会主义在 21 世纪的中国焕发出强大生机活力；意味着中国特色社会主义道路、理论、制度、文化不断发展，拓展了发展中国家走向现代化的途径，为解决人类问题贡献了中国智慧和中国方案。", "党的十九大提出「培养担当民族复兴大任的时代新人」的战略要求：大学生应以有理想、有本领、有担当为根本要求，努力成长为中国特色社会主义事业合格的建设者和可靠接班人。", "要做忠诚爱国者（与祖国同行）、改革创新生力军（与时代同进步）、崇德向善好青年（与人民同在）：与历史同向、与祖国同行、与人民同在。"], "examples": ["选择题真题：「新时代是我们理解当前所处历史方位的关键词」；「培养担当民族复兴大任的时代新人」是党的十九大提出的战略要求；为解决人类问题贡献了中国智慧和中国方案。"], "stats": {"hits": 63, "files_hit": 6, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s0-k2", "title": "0.2 思想道德与法治的关系（课程性质）", "importance": 5, "dimension": "记忆", "match_terms": ["思想道德", "法律", "上层建筑", "思想道德素质", "法治素养"], "content": ["思想道德与法律都是调节人们思想行为、协调人际关系、维护社会秩序的重要手段，都是社会上层建筑的重要组成部分。", "二者关系：社会主义思想道德为社会主义法律提供思想指引和价值基础（价值标准是法律正义性与合法性的基础、促进法律制定实施、弥补法律调整不足）；社会主义法律为社会主义思想道德建设提供制度保障（传播实施思想道德、确认其主流地位）。二者相辅相成、缺一不可，不能相互替代。", "思想道德素质与法治素养是思想政治素质、道德素质和法治素养的有机融合，是大学生把握发展机遇、创造精彩人生的基础条件和宝贵资源。"], "examples": ["选择题真题：「思想道德修养与法律基础」是融思想性、政治性、科学性、理论性、实践性于一体的思想政治理论课；判断：「社会主义法律与社会主义思想道德在一定程度上可以相互替代」——错误。"], "stats": {"hits": 314, "files_hit": 8, "data_stars": 5}, "importance_source": "data+ai(max)"}]}, {"id": "s1", "title": "第一章 领悟人生真谛 把握人生方向（人生观）", "overview": "人生观三要素、人的本质、人生价值评价与实现，单选多选与材料题的重点区。", "importance": 5, "knowledge_points": [{"id": "s1-k1", "title": "1.1 人生观与人的本质", "importance": 5, "dimension": "记忆/理解", "match_terms": ["人生观", "人生目的", "人生态度", "人生价值", "世界观", "人的本质", "社会关系"], "content": ["人生观是人们在实践中形成的对于人生目的、人生意义的根本看法和态度，主要通过人生目的（回答人为什么活着）、人生态度（表明人应当怎样对待生活）、人生价值（判别什么样的人生才有意义）三个方面体现出来。", "人生目的决定人生道路、决定人生态度、决定人生价值标准——人生目的居于核心地位。世界观决定人生观，人生观对世界观的巩固发展和变化起重要作用。", "马克思主义认为人的本质不是单个人所固有的抽象物，在其现实性上是一切社会关系的总和——社会属性是人的本质属性（不是自然属性、不是自私、不是自由）。", "个人与社会的关系是人生的社会历史条件，是认识和处理人生问题的重要着眼点和出发点：个人与社会是对立统一的关系，最根本的是个人利益与社会利益的关系；社会利益是个人利益得以实现的前提和基础。"], "examples": ["选择题真题：人生观的核心是人生目的；人的本质是一切社会关系的总和；世界观决定人生观；「知耻近乎勇」说的是荣辱观。"], "stats": {"hits": 219, "files_hit": 6, "data_stars": 4}, "importance_source": "data+ai(max)"}, {"id": "s1-k2", "title": "1.2 高尚人生追求与错误人生观批判", "importance": 5, "dimension": "理解", "match_terms": ["服务人民、奉献社会", "拜金主义", "享乐主义", "极端个人主义", "人生追求"], "content": ["服务人民、奉献社会的思想以其科学而高尚的品质，代表了人类社会迄今最先进的人生追求：确立这一追求才能清楚地把握生命历程和奋斗目标、以正确态度对待人生、掌握正确的人生价值标准。", "三种错误人生观：拜金主义人生观（把金钱作为衡量人生价值的唯一标准，「人为财死」「金钱万能」）、享乐主义人生观（「今朝有酒今朝醉」）、极端个人主义人生观（以个人为中心、个人利益至上）。共同特征：都是狭隘的剥削阶级利益的人生观、没有正确把握个人与社会的关系、对人的需求的理解是片面的。", "「问渠那得清如许，为有源头活水来」体现既打牢扎实基础又及时更新知识的学习理念。"], "examples": ["选择题真题：「今朝有酒今朝醉」反映享乐主义；「人为财死，鸟为食亡」「金钱是万能的」属拜金主义；个人主义是生产资料私有制的产物、资产阶级人生观的核心。"], "stats": {"hits": 25, "files_hit": 2, "data_stars": 1}, "importance_source": "data+ai(max)"}, {"id": "s1-k3", "title": "1.3 积极进取的人生态度", "importance": 4, "dimension": "记忆", "match_terms": ["人生态度", "人生须认真", "人生当务实", "人生应乐观", "人生要进取"], "content": ["人生态度是人们通过生活实践所形成的对人生问题的一种相对稳定的心理倾向和精神状态。", "积极进取的人生态度：人生须认真（严肃思考人生意义、明确生活目标与肩负的责任）、人生当务实（从实际出发、以求真务实精神创造人生）、人生应乐观（乐观向上、热爱生活、充满自信）、人生要进取（积极进取、在贡献中提升生命价值）。", "正确对待人生矛盾（五观）：树立正确的幸福观（幸福是总体性范畴，家庭和睦、职业成功、行为正当、人格完善都是重要因素）、得失观（不惧怕一时的失、不满足于一时的得、不拘泥于个人利益得失）、顺逆观（顺境逆境作用都是双重的，善于利用顺境、勇于战胜逆境）、生死观（生命宝贵、合理规划）、荣辱观（荣辱观对个人思想行为具有鲜明的导向和调节作用）。"], "examples": ["材料题真题：南京博士街头乞讨案例——分析人生态度对人生的意义，说明大学生应有的人生态度（认真、务实、乐观、进取）；「真正的快乐只能由奋斗的艰苦转化而来」体现苦乐观。"], "stats": {"hits": 60, "files_hit": 2, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s1-k4", "title": "1.4 人生价值的评价与实现", "importance": 5, "dimension": "理解/应用", "match_terms": ["自我价值", "社会价值", "人生价值评价", "贡献", "劳动", "能力有大小与贡献须尽力"], "content": ["人生价值内在地包含自我价值（个体的人生活动对自己的生存和发展所具有的价值，表现为对自身物质和精神需要的满足程度）和社会价值（个体的人生活动对社会、他人所具有的价值）两个方面，二者相互区别又相互依存，共同构成人生价值的矛盾统一体——自我价值的实现是个体为社会创造更大价值的前提，社会价值的实现是自我完善全面发展的保障。", "人生的自我价值必须与社会价值相结合，并通过社会价值表现出来——「个人抱负只有同时代和人民的要求紧密结合才能充分实现自身价值」。", "人生价值评价的根本尺度：看一个人的人生活动是否符合社会发展的客观规律、是否通过实践促进了历史的进步。劳动以及通过劳动对社会和他人做出的贡献，是社会评价一个人人生价值的普遍标准。", "正确评价人生价值的方法：坚持能力有大小与贡献须尽力相统一、物质贡献与精神贡献相统一、完善自身与贡献社会相统一（兼顾动机与效果）。", "人生价值的实现条件：从社会客观条件出发、从个体自身条件出发、不断增强实现人生价值的能力和本领；根本途径是进行积极的创造性的实践活动，在实践中走与人民群众相结合、与社会实践相结合的道路。"], "examples": ["选择题真题：爱因斯坦「一个人对社会的价值首先取决于他对增进人类利益有多大作用」——奉献/对社会的责任和贡献；「三百六十行行行出状元」说明人生价值终究要通过所从事的事业展现；徐虎「你不奉献我不奉献谁来奉献」——人生价值本质在于个人对社会的责任和贡献。"], "stats": {"hits": 95, "files_hit": 6, "data_stars": 2}, "importance_source": "data+ai(max)"}]}, {"id": "s2", "title": "第二章 追求远大理想 坚定崇高信念（理想信念）", "overview": "理想信念的含义、作用与实现路径，简答与材料题高频。", "importance": 4, "knowledge_points": [{"id": "s2-k1", "title": "2.1 理想信念的内涵与特征", "importance": 5, "dimension": "记忆/理解", "match_terms": ["理想", "信念", "信仰", "超越性", "实践性", "时代性", "马克思主义信仰"], "content": ["理想是人们在实践中形成的、有实现可能性的、对未来社会和自身发展目标的向往与追求，具有超越性（源于现实又超越现实）、实践性（在实践中产生、在实践中实现）、时代性（受时代条件制约）三个特征——理想区别于幻想、空想的关键在于源于实践、具有实现的可能性。", "信念是人们在一定的认识基础上确立的对某种思想或事物坚信不疑并身体力行的精神状态，具有执着性（高于一般认识的稳定性）与多样性；信仰是信念最集中、最高的表现形式。", "理想与信念相互依存：理想是信念所指的对象，信念是理想实现的保障。", "科学信念与非科学信念的分野：社会主义必然代替资本主义、共产主义必然实现的信念是科学的；「生死有命富贵在天」「金钱万能」等是非科学信念。"], "examples": ["选择题真题：信念的最集中最高的表现形式是信仰；理想不具有「保守性」；理想区别于幻想空想的特点是源于实践、具有实现可能。"], "stats": {"hits": 260, "files_hit": 8, "data_stars": 4}, "importance_source": "data+ai(max)"}, {"id": "s2-k2", "title": "2.2 理想信念的作用与个人理想、社会理想", "importance": 5, "dimension": "理解", "match_terms": ["昭示奋斗目标", "提供前进动力", "提高精神境界", "个人理想", "社会理想", "共同理想"], "content": ["理想信念的作用（意义）：昭示人生的奋斗目标（导向作用）、提供人生的前进动力（以惊人毅力成就事业）、提高人生的精神境界（塑造高尚人格）。没有理想信念，就会导致精神上的「软骨病」。", "个人理想与社会理想的关系：个人理想以社会理想为指引，社会理想是对个人理想的凝练和升华；个人理想的总和并不等于社会理想；理想层面的关系实质上是个人与社会关系在理想层面的反映。", "理想与现实的辩证关系：辩证看待理想与现实的矛盾，不要用理想来否定现实，也不要用现实来否定理想；理想的实现具有长期性、艰巨性和曲折性。", "大学生要坚定马克思主义信仰、树立中国特色社会主义共同理想，增强道路自信、理论自信、制度自信、文化自信。"], "examples": ["简答真题：「如何正确认识理想与现实的关系」「如何认识个人理想与社会理想之间的辩证关系」；多选真题：理想信念的作用是昭示奋斗目标、提供前进动力、提高精神境界（不能规避人生风险）。"], "stats": {"hits": 63, "files_hit": 4, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s2-k3", "title": "2.3 为实现中国梦注入青春能量", "importance": 4, "dimension": "应用", "match_terms": ["立志当高远", "立志做大事", "立志须躬行", "中国梦", "青春梦想"], "content": ["青年在实现中国梦的实践中放飞青春梦想，要把实现理想的道路建立在脚踏实地的奋斗上：立志当高远（放开眼界、不满足现状、不屈服于一时困难）、立志做大事（把个人命运与国家和人民的命运联系在一起）、立志须躬行（崇高理想的实现需要一点一滴的奋斗，起点就在脚下、在平凡岗位上）。", "伟大出自平凡：祖国的富强、民族的繁荣、人民的幸福需要每一个社会成员尽其才、奋其志。", "「合抱之木生于毫末，九层之台起于累土」说明理想的实现要立足当下、循序渐进；「少年智则国智，少年强则国强」激励青年把个人理想融入民族复兴的伟大理想。"], "examples": ["材料题真题：《老子》「千里之行始于足下」——分析如何看待理想的实现（认识理想的实践性、长期性、发挥主观能动性）；梁启超《少年中国说》——新时代大学生应树立怎样的理想信念。"], "stats": {"hits": 24, "files_hit": 4, "data_stars": 1}, "importance_source": "data+ai(max)"}]}, {"id": "s3", "title": "第三章 继承优良传统 弘扬中国精神", "overview": "中国精神、爱国主义与改革创新三大主题，材料题（黄旭华、黄大年等）高频区。", "importance": 5, "knowledge_points": [{"id": "s3-k1", "title": "3.1 中国精神的内涵", "importance": 5, "dimension": "记忆", "match_terms": ["中国精神", "民族精神", "时代精神", "爱国主义", "改革创新", "伟大创造精神", "伟大奋斗精神"], "content": ["实现中华民族伟大复兴的中国梦，必须弘扬中国精神——中国精神是兴国强国之魂，是凝聚中国力量的精神纽带、激发创新创造的精神动力、推进复兴伟业的精神定力。", "中国精神 = 以爱国主义为核心的民族精神 + 以改革创新为核心的时代精神。", "中华民族崇尚精神的优秀传统：对物质生活与精神生活相互关系的独到理解、对理想的不懈追求、对道德修养和道德教化的重视、对理想人格的推崇。", "伟大民族精神的表现：伟大创造精神、伟大奋斗精神、伟大团结精神、伟大梦想精神（习近平在十三届全国人大一次会议上的概括）。"], "examples": ["选择题真题：实现中国梦必须弘扬的是「中国精神」（单选，注意区分民族精神/时代精神是中国精神的两个构成）；民族精神的核心是爱国主义，时代精神的核心是改革创新。"], "stats": {"hits": 146, "files_hit": 4, "data_stars": 3}, "importance_source": "data+ai(max)"}, {"id": "s3-k2", "title": "3.2 爱国主义及其时代要求", "importance": 5, "dimension": "记忆/理解", "match_terms": ["爱国主义", "基本要求", "历史的、具体的", "祖国统一", "民族团结", "国家安全"], "content": ["爱国主义体现了人民群众对自己祖国的深厚感情，反映了个人对祖国的依存关系，是人们对自己故土家园、民族和文化的归属感、认同感、尊严感与荣誉感的统一；是调节个人与祖国之间关系的道德要求、政治原则和法律规范。", "爱国主义是历史的、具体的（不同历史时期有不同内涵：新民主主义革命时期表现为致力于推翻三座大山；现阶段表现为心系国家前途命运、献身社会主义现代化事业和祖国统一大业）——不是抽象的。", "爱国主义的基本要求：爱祖国的大好河山、爱自己的骨肉同胞、爱祖国的灿烂文化、爱自己的国家。", "新时代爱国主义的基本要求：坚持爱国主义和社会主义相统一、维护祖国统一和民族团结、尊重和传承中华民族历史和文化、坚持立足民族又面向世界。"], "examples": ["选择题真题：「位卑未敢忘忧国」「苟利国家生死以」等诗句反映爱国主义优良传统（多选全选）；爱国主义在不同历史时期内涵不同——历史的、具体的；做忠诚爱国者要把国家安全、荣誉和利益放在高于一切的地位。"], "stats": {"hits": 79, "files_hit": 6, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s3-k3", "title": "3.3 做忠诚的爱国者", "importance": 4, "dimension": "理解/应用", "match_terms": ["忠诚爱国者", "一个中国", "总体国家安全观", "国防意识", "推进祖国统一"], "content": ["推进祖国统一：坚持一个中国原则，推进两岸交流合作，促进两岸同胞团结奋斗，反对「台独」分裂图谋——台湾是中国领土不可分割的一部分，解决台湾问题、实现祖国完全统一是全体中华儿女的共同愿望。", "促进民族团结：铸牢中华民族共同体意识，尊重各民族的传统文化和风俗习惯。", "增强国家安全意识：确立总体国家安全观（以人民安全为宗旨、以政治安全为根本）、增强国防意识、履行维护国家安全的义务。", "只有把国家的安全、荣誉和利益放在高于一切的地位，始终做到爱国的深厚情感、理性认识和实际行动相一致，与祖国同呼吸、共命运，才是真正的爱国者。"], "examples": ["简答真题：「如何做新时代的忠诚爱国者」——维护祖国统一、促进民族团结、增强国家安全意识三大方面。"], "stats": {"hits": 10, "files_hit": 2, "data_stars": 1}, "importance_source": "data+ai(max)"}, {"id": "s3-k4", "title": "3.4 让改革创新成为青春远航的动力", "importance": 4, "dimension": "理解", "match_terms": ["改革创新", "第一动力", "生力军", "创新思维", "创新实践"], "content": ["创新始终是推动人类社会发展的第一动力；创新能力是当今国际竞争新优势的集中体现；改革创新是我国赢得未来的必然要求——当代中国社会发展离不开改革创新。", "做改革创新的生力军：树立改革创新的自觉意识（增强改革创新的责任感、树立敢于突破陈规的意识、树立大胆探索未知领域的信心）；增强改革创新的能力本领（夯实创新基础、培养创新思维、投身创新实践）。", "大学生要把弘扬改革创新精神贯穿于实践中、体现在行动上，以时代使命为己任，勇做改革创新的实践者。"], "examples": ["简答真题：「大学生应如何走在改革创新的时代前列」——自觉意识三方面+能力本领三方面。"], "stats": {"hits": 58, "files_hit": 4, "data_stars": 2}, "importance_source": "data+ai(max)"}]}, {"id": "s4", "title": "第四章 明确价值要求 践行价值准则（社会主义核心价值观）", "overview": "三个层面24字、核心价值观与核心价值体系的关系及道义力量，纯记忆型高频选择题区。", "importance": 4, "knowledge_points": [{"id": "s4-k1", "title": "4.1 社会主义核心价值观的内容", "importance": 5, "dimension": "记忆", "match_terms": ["社会主义核心价值观", "富强、民主、文明、和谐", "自由、平等、公正、法治", "爱国、敬业、诚信、友善", "三个层面"], "content": ["社会主义核心价值观的基本内容（24字）：国家层面——富强、民主、文明、和谐；社会层面——自由、平等、公正、法治；公民层面——爱国、敬业、诚信、友善。党的十八大提出倡导社会主义核心价值观。", "社会主义核心价值观是当代中国精神的集中体现，凝结着全体人民共同的价值追求。", "对民族和国家来说，最持久、最深层次的力量是全社会共同认可的核心价值观；文化软实力的竞争，本质上是不同文化所代表的核心价值观的竞争。"], "examples": ["选择题真题：核心价值观三个层面的划分（国家/社会/公民）；党的十八大提出倡导 24 字核心价值观；文化软实力竞争本质上是核心价值观的竞争。"], "stats": {"hits": 80, "files_hit": 2, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s4-k2", "title": "4.2 核心价值观与核心价值体系", "importance": 5, "dimension": "记忆/辨析", "match_terms": ["社会主义核心价值体系", "马克思主义指导思想", "共同理想", "八荣八耻", "精神内核"], "content": ["社会主义核心价值体系的内容：马克思主义指导思想、中国特色社会主义共同理想、以爱国主义为核心的民族精神和以改革创新为核心的时代精神、社会主义荣辱观（八荣八耻）。", "社会主义核心价值观与核心价值体系的联系与区别：核心价值观是核心价值体系的精神内核，二者具有内在一致性，都体现社会主义意识形态的本质要求；核心价值体系先提出，「富强、民主、文明、和谐」是后来提炼的核心价值观内容，不直接构成核心价值体系的主要内容——注意「下列不属于核心价值体系内容」的干扰项设计。"], "examples": ["选择题真题：「以下不属于社会主义核心价值体系内容的是——富强、民主、文明、和谐」（这是核心价值观的内容）；核心价值观自信是道路、理论、制度、文化自信的价值内核。"], "stats": {"hits": 44, "files_hit": 4, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s4-k3", "title": "4.3 社会主义核心价值观的道义力量", "importance": 4, "dimension": "记忆/理解", "match_terms": ["先进性", "人民性", "真实性", "历史底蕴", "现实基础", "道义力量"], "content": ["社会主义核心价值观居于人类社会的价值制高点，具有强大的道义力量，体现在其先进性、人民性、真实性——「人民当家作主的社会主义制度使自由、民主、公正等价值观念不是装饰品而是要解决人民要解决的实际问题」体现真实性。", "核心价值观自信的依据：丰厚的历史底蕴（中华优秀传统文化是其重要源泉）、坚实的现实基础（中国特色社会主义建设实践是其现实基础）、强大的道义力量。", "培育和弘扬社会主义核心价值观必须立足中华优秀传统文化，坚持古为今用、推陈出新，推动中华传统文化创造性转化、创新性发展——「民惟邦本」「天人合一」「和而不同」「天行健君子以自强不息」等传统理念是其思想源泉。"], "examples": ["选择题真题：核心价值观的道义力量集中体现在先进性、人民性、真实性；其现实基础是中国特色社会主义建设实践；培育核心价值观要从中华优秀传统文化中汲取营养。"], "stats": {"hits": 34, "files_hit": 4, "data_stars": 1}, "importance_source": "data+ai(max)"}, {"id": "s4-k4", "title": "4.4 勤学修德明辨笃实（扣好人生扣子）", "importance": 4, "dimension": "应用", "match_terms": ["勤学", "修德", "明辨", "笃实", "人生的扣子", "知行合一"], "content": ["青年的价值取向决定了未来整个社会的价值取向，而青年又处在价值观形成和确立的时期，「人生的扣子从一开始就要扣好」。", "大学生践行社会主义核心价值观要做到勤学（下得苦功夫，求得真学问）、修德（加强道德修养，注重道德实践）、明辨（善于明辨是非，善于决断选择）、笃实（于实处用力，知行合一、夯实基础、久久为功，不可坐而空谈）。", "「笃实」要求知行合一、久久为功；「心怀善念」不属于笃实要求的具体表述（注意干扰项）。"], "examples": ["选择题真题：「不属于笃实要求的是——心怀善念」；材料题真题：「扣好人生扣子」材料——人生观的内容+青年如何践行核心价值观。"], "stats": {"hits": 26, "files_hit": 4, "data_stars": 1}, "importance_source": "data+ai(max)"}]}, {"id": "s5", "title": "第五章 遵守道德规范 锤炼道德品格（道德）", "overview": "道德起源本质—传统美德与革命道德—社会公德职业道德家庭美德—个人品德，全章题量最大的板块。", "importance": 5, "knowledge_points": [{"id": "s5-k1", "title": "5.1 道德的起源、本质与作用", "importance": 4, "dimension": "记忆/理解", "match_terms": ["道德起源", "劳动", "风俗习惯", "社会舆论", "内心信念", "社会经济关系", "道德本质"], "content": ["道德起源的第一个历史前提是劳动（社会关系的形成是道德产生的客观条件，人的自我意识是道德产生的主观条件）。", "人类最初的道德以风俗习惯的形式表现出来，后来逐渐分化出独立的道德意识。", "道德的本质是由社会经济关系的性质决定的：社会经济关系的性质决定道德的性质和体系，所表现出来的利益决定道德的基本原则和主要规范；道德是一种调整人与人、人与社会、人与自然以及人与自身之间关系的特殊的行为规范，通过社会舆论、传统习俗和人们的内心信念来维持。", "道德的认识功能、规范功能、调节功能；道德对社会发展的作用受社会基本矛盾运动规律的制约——道德不是万能的。"], "examples": ["选择题真题：劳动是人类道德起源的第一个历史前提；最初的道德以风俗习惯形式表现；道德通过社会舆论、传统习俗、内心信念维持；道德的本质由社会经济关系的性质决定。"], "stats": {"hits": 39, "files_hit": 5, "data_stars": 1}, "importance_source": "data+ai(max)"}, {"id": "s5-k2", "title": "5.2 中华传统美德与中国革命道德", "importance": 5, "dimension": "记忆", "match_terms": ["中华传统美德", "重视整体利益", "仁爱", "理想人格", "中国革命道德", "全心全意为人民服务", "为共产主义奋斗"], "content": ["中华传统美德的基本精神：重视整体利益，强调责任奉献；推崇「仁爱」原则，注重以和为贵；提倡人伦价值，重视道德义务；追求精神境界，向往理想人格；强调道德修养，注重道德践履。", "对待中国传统道德的正确态度是辩证扬弃——既非全盘肯定也非全盘否定，取其精华、去其糟粕，实现创造性转化和创新性发展。", "中国革命道德的主要内容：为实现社会主义和共产主义理想而奋斗（其灵魂/首要要求是坚持社会主义、共产主义理想信念）、全心全意为人民服务、始终把革命利益放在首位、树立社会新风建立新型人际关系、修身自律保持节操。", "中国革命道德的当代价值：有利于加强和巩固社会主义和共产主义的理想信念、培育和践行社会主义核心价值观、引导人们树立正确的道德观、培育良好的社会道德风尚。"], "examples": ["简答真题：「中华传统美德的基本精神体现在哪些方面」（五点）、「中国革命道德的主要内容有哪些」（五点）、「中国革命道德的当代价值」（四点）——三道简答均为高频原题。"], "stats": {"hits": 28, "files_hit": 3, "data_stars": 1}, "importance_source": "data+ai(max)"}, {"id": "s5-k3", "title": "5.3 社会主义道德的核心与原则", "importance": 5, "dimension": "记忆/理解", "match_terms": ["为人民服务", "集体主义", "社会主义道德建设", "国家利益", "正当利益", "先进性要求", "广泛性要求"], "content": ["为人民服务是社会主义道德的核心：它是社会主义经济基础和人际关系的客观要求、是社会主义市场经济健康发展的要求、是先进性要求和广泛性要求的统一。", "集体主义是社会主义道德的原则：强调国家利益、社会整体利益和个人利益的辩证统一；强调国家利益、社会整体利益高于个人利益；重视和保障个人的正当利益。", "社会主义道德建设要与社会主义法律建设相协调，与中华传统美德相承接、与革命道德相传承。"], "examples": ["选择题真题：社会主义道德的核心是为人民服务、原则是集体主义（两题连考）；论述真题：「如何认识社会主义道德的核心和原则」。"], "stats": {"hits": 45, "files_hit": 5, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s5-k4", "title": "5.4 社会公德与网络道德", "importance": 4, "dimension": "记忆", "match_terms": ["社会公德", "文明礼貌", "助人为乐", "爱护公物", "保护环境", "遵纪守法", "网络道德", "网络空间"], "content": ["社会公德是全体社会成员都必须遵守的道德规范，具有最广泛的群众基础和适用范围，主要内容（五个方面）：文明礼貌、助人为乐、爱护公物、保护环境、遵纪守法——遵纪守法是全体公民都必须遵循的基本行为准则，是维护公共生活秩序的重要条件。", "公共生活的特征：活动范围的广泛性、活动内容的开放性、交往对象的复杂性、活动方式的多样性。", "网络生活中的道德要求：正确使用网络工具、健康进行网络交往、自觉避免沉迷网络、加强网络道德自律、积极引导网络舆论——网络空间同现实社会一样，既要提倡自由也要保持秩序；网络生活中的道德要求是社会公德在网络空间的运用和扩展；不能以网络代替现实交往。"], "examples": ["选择题真题：社会公德五项内容（多选）；网络道德要求的正确说法（多选：「从网上得到的信息越多越好」是错误干扰项）。"], "stats": {"hits": 27, "files_hit": 2, "data_stars": 1}, "importance_source": "data+ai(max)"}, {"id": "s5-k5", "title": "5.5 职业道德与家庭美德", "importance": 4, "dimension": "记忆", "match_terms": ["职业道德", "爱岗敬业", "诚实守信", "办事公道", "奉献社会", "家庭美德", "恋爱观", "婚姻家庭"], "content": ["职业道德的主要内容：爱岗敬业（最基本要求）、诚实守信、办事公道、热情服务、奉献社会（最高层次要求，体现社会主义职业道德的最高目标指向）。", "树立正确的择业观与创业观：服从社会发展需要、树立崇高职业理想、做好充分择业准备、培养创业勇气和能力。", "恋爱中的道德规范：尊重人格平等、自觉承担责任、文明相亲相爱。树立正确恋爱观：不能错把友谊当爱情、不能错置爱情的地位、不能片面或功利化对待恋爱、不能只重过程不顾后果、不能因失恋而迷失人生方向。", "婚姻家庭中的道德规范（家庭美德）：尊老爱幼、男女平等、夫妻和睦、勤俭持家、邻里团结。"], "examples": ["选择题真题：社会主义职业道德的最基本要求是爱岗敬业；家庭美德的基本要求（邻里团结等）；恋爱婚姻道德的多选题（「拒绝平淡，要么爱得轰轰烈烈」「公共场所跪地求婚」「只谈恋爱不结婚」均不符合道德规范）。"], "stats": {"hits": 37, "files_hit": 3, "data_stars": 1}, "importance_source": "data+ai(max)"}, {"id": "s5-k6", "title": "5.6 个人品德与道德修养方法", "importance": 4, "dimension": "记忆/应用", "match_terms": ["个人品德", "学思并重", "省察克治", "慎独自律", "知行合一", "积善成德", "道德修养"], "content": ["个人品德是个体对某种道德要求认同和践履的结果，集中体现道德认知、道德情感、道德意志、道德信念和道德行为的内在统一。", "加强道德修养的正确方法：学思并重、省察克治、慎独自律、知行合一、积善成德（「坐而论道」不是修养方法——注意干扰项）。", "大学生要投身崇德向善的道德实践：明大德（立大志成大才）、守公德（遵守社会公德职业道德）、严私德（严格约束自己的操守和行为），从小事做起、从身边做起。"], "examples": ["选择题真题：「下列属于加强个人道德修养的正确方法的有」——学思并重/省察克治/慎独自律/知行合一/积善成德（多选，排除坐而论道）；论述真题：「作为当代大学生如何积极投身崇德向善的道德实践」——明大德守公德严私德。"], "stats": {"hits": 27, "files_hit": 3, "data_stars": 1}, "importance_source": "data+ai(max)"}]}, {"id": "s6", "title": "第六章 学习法治思想 提升法治素养（法治）", "overview": "法律运行—宪法—法治体系与法治道路—法治思维—权利义务，是全课程知识点最密集的一章。", "importance": 5, "knowledge_points": [{"id": "s6-k1", "title": "6.1 法律的含义与运行", "importance": 5, "dimension": "记忆", "match_terms": ["法律", "国家创制", "统治阶级意志", "物质生活条件", "法律制定", "法律遵守", "法律适用"], "content": ["法律的具体含义（三个方面）：法律是由国家创制和实施的行为规范（制定或认可）；法律由一定的社会物质生活条件所决定；法律是统治阶级意志的体现（我国社会主义法律是党的主张和人民意志的统一）。法律区别于其他社会规范的首要之处在于：由国家创制并保证实施（以国家强制力保障实施）。", "法律的运行：法律制定（立法——起始性和关键性环节，全国人大及其常委会行使国家立法权）、法律执行（执法——国家行政机关，国务院制定行政法规）、法律适用（司法——国家审判机关和检察机关）、法律遵守（守法——法律实施和实现的基本途径，全体社会成员）。"], "examples": ["选择题真题：法律制定的主体是国家权力机关；法律运行的起始性和关键性环节是法律制定；守法是法律实施和实现的基本途径；行政法规的制定机关是国务院。"], "stats": {"hits": 277, "files_hit": 4, "data_stars": 5}}, {"id": "s6-k2", "title": "6.2 我国宪法与法律部门", "importance": 5, "dimension": "记忆", "match_terms": ["宪法", "基本原则", "人民主权", "基本政治制度", "人民代表大会制度", "罪刑法定", "法律部门"], "content": ["我国社会主义法律的本质特征：体现党的主张和人民意志的统一、具有科学性和先进性、是中国特色社会主义建设的重要保障。", "宪法是国家的根本法，具有最高的法律地位、法律权威、法律效力；我国形成了以宪法为核心的中国特色社会主义法律体系。", "我国宪法的基本原则：党的领导原则、人民主权原则、尊重和保障人权原则、社会主义法治原则、民主集中制原则。", "我国的国体是人民民主专政，政体（政权组织形式）是人民代表大会制度；宪法确立的基本政治制度：中国共产党领导的多党合作和政治协商制度、民族区域自治制度、基层群众自治制度。", "实体法律部门：宪法相关法、民法商法、行政法、经济法、社会法、刑法；程序法：诉讼法与非诉讼程序法（民事诉讼法属程序法）。刑法基本原则：罪刑法定（法无明文规定不为罪）、法律面前人人平等、罪责刑相适应。"], "examples": ["选择题真题：我国政权组织形式是人民代表大会制度；民事诉讼法属于程序法；民商法部门包括婚姻法、公司法、专利法（不含劳动法——属社会法）。"], "stats": {"hits": 51, "files_hit": 4, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s6-k3", "title": "6.3 全面依法治国与法治道路", "importance": 5, "dimension": "记忆/理解", "match_terms": ["全面依法治国", "法治体系", "党的领导", "人民主体地位", "依法治国", "以德治国", "中国特色社会主义法治道路"], "content": ["建设中国特色社会主义法治体系「五大体系」：完备的法律规范体系、高效的法治实施体系、严密的法治监督体系、有力的法治保障体系、完善的党内法规体系。", "走中国特色社会主义法治道路的核心要义（五个坚持）：坚持中国共产党的领导（中国特色社会主义最本质的特征、社会主义法治最根本的保证）、坚持人民主体地位、坚持法律面前人人平等、坚持依法治国和以德治国相结合（法治与德治如车之两轮、鸟之两翼）、坚持从中国实际出发。", "全面依法治国是治国理政的基本方式，治国理政必须奉守法律至上的最高准则；法律至上具体表现为法律的普遍适用性、优先适用性、不可违抗性。"], "examples": ["简答真题：「走中国特色社会主义法治道路有哪五个方面的核心要义及各自重要性」（五大坚持+意义）；论述真题：「建设中国特色社会主义法治体系包含哪些主要内容」（五大体系）。"], "stats": {"hits": 43, "files_hit": 4, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s6-k4", "title": "6.4 法治思维", "importance": 5, "dimension": "记忆/理解", "match_terms": ["法治思维", "正当性思维", "规范性思维", "法律权威", "公平正义", "权利义务"], "content": ["法治思维是 以法治价值和法治精神为导向，运用法律原则、法律规则、法律方法思考和处理问题的思维模式——包含四层含义：以法治价值和法治精神为指导的正当性思维、以法律原则和规则为依据的规范性思维、以法律手段与方法为依托的可靠的逻辑思维、符合规律尊重事实的科学思维。", "法治思维与人治思维的分界：最高权威是法律还是个人；法治思维是融法律的价值属性和工具理性于一体的特殊的高级法律意识。", "培养法治思维的途径：学习法律知识（前提）、掌握法律方法、参与法律实践、养成守法习惯、守住法律底线（红线不可逾越、底线不可触碰）。", "法治思维蕴含的法治理念：公平正义（法律追求的主要价值目标）——权利公平、机会公平、规则公平、救济公平；自由平等（核心是法律面前人人平等）；权利与义务的统一。"], "examples": ["选择题真题：「对所有人适用同一规则和标准，不得因人而异」是规则公平；法律上的平等观念最核心的是法律面前人人平等。"], "stats": {"hits": 46, "files_hit": 3, "data_stars": 2}, "importance_source": "data+ai(max)"}, {"id": "s6-k5", "title": "6.5 尊重和维护法律权威", "importance": 4, "dimension": "记忆", "match_terms": ["法律权威", "信仰法律", "遵守法律", "服从法律", "维护法律", "宪法保障", "司法保障"], "content": ["法律有无权威取决于：法律在国家和社会治理体系中的地位和作用、法律本身的科学程度、法律在实践中的实施程度、法律被社会成员尊崇或信仰的程度。", "尊重和维护法律权威的基本要求：信仰法律、遵守法律、服从法律、维护法律。", "意义：法律权威是社会主义法治观念的核心要求和建设社会主义法治国家的前提条件；对推进国家治理体系和治理能力现代化、实现长治久安极为重要；是实现人民意志、维护人民利益、保障人民权利的基本途径；是维护个人合法权益的根本保障。", "权利保障体系：宪法保障是前提和基础、立法保障是重要条件、行政保护是关键环节、司法保障是最后防线。"], "examples": ["选择题真题：权利保障的前提和基础是宪法保障、重要条件是立法保障、最后防线是司法保障（三题连考）；论述真题：「论述尊重和维护法律权威的重要意义」。"], "stats": {"hits": 37, "files_hit": 2, "data_stars": 1}, "importance_source": "data+ai(max)"}, {"id": "s6-k6", "title": "6.6 法律权利与法律义务", "importance": 5, "dimension": "记忆/理解", "match_terms": ["法律权利", "法律义务", "政治权利", "人身权利", "社会经济权利", "依法维权", "复合性"], "content": ["法律权利的特点：权利的内容、种类和实现程度受社会物质生活条件的制约；权利的内容、分配和实现方式因社会制度和国家法律的不同而存在差异；权利不仅由法律规定或认可，而且受法律维护或保障，具有不可侵犯性；法律权利必须依法行使。", "法律权利与法律义务的关系：相互依存（一枚硬币的两面）、目的与手段的关系、有些权利义务具有复合性（如劳动和受教育既是权利又是义务）——每个人既是权利主体又是义务主体。", "公民的基本权利：政治权利（选举权与被选举权、表达权、民主管理权、监督权）、人身权利（生命健康权、人身自由权、人格尊严权、住宅安全权等）、财产权利、社会经济权利（劳动权、休息权、社会保障权、物质帮助权）、宗教信仰及文化权利。", "依法维权：当权利受到侵害时，有权向人民法院提起诉讼要求恢复权利、赔偿损失、惩罚侵权者；也可通过行政复议、行政诉讼、调解仲裁等方式寻求救济——不能暴力抗法。"], "examples": ["选择题真题：人身权利包括住宅安全权（不含继承权——属财产权、休息权——属社会经济权利）；社会经济权利包括劳动权、社会保障权、休息权（受教育权属文化教育权利的常见争议项，按题库口径归入时注意辨析）；材料题真题：聂树斌案——司法纠错、依法维权、程序正义。"], "stats": {"hits": 59, "files_hit": 2, "data_stars": 2}, "importance_source": "data+ai(max)"}]}], "exam_profile": {"source": ["依据「⭐期末考试练习题、知识点（总结）.docx」题型体系合理设定（该科未提供完整原卷）"], "total_score": 100, "duration": 120, "total_questions": 27, "notes": "画像设定依据：练习题集含单选、多选、简答、材料分析、论述五种题型，无逐题分值标注；按高校思政课期末卷惯例设定 100 分卷（单选30+多选10+简答20+材料20+论述20），如老师公布具体分值请以老师为准。难度按认知要求估计：直接记忆为 easy，概念辨析为 medium，原理联系实际为 hard。", "sections": [{"id": "choice", "label": "一、单项选择题", "question_type": "choice", "question_count": 15, "score_each": 2, "total_score": 30, "difficulty_counts": {"easy": 9, "medium": 5, "hard": 1}}, {"id": "mchoice", "label": "二、多项选择题", "question_type": "mchoice", "question_count": 5, "score_each": 2, "total_score": 10, "difficulty_counts": {"easy": 1, "medium": 3, "hard": 1}}, {"id": "short", "label": "三、简答题", "question_type": "short", "question_count": 4, "score_each": 5, "total_score": 20, "difficulty_counts": {"easy": 1, "medium": 2, "hard": 1}}, {"id": "material", "label": "四、材料分析题", "question_type": "reading", "question_count": 2, "score_each": 10, "total_score": 20, "difficulty_counts": {"easy": 0, "medium": 1, "hard": 1}}, {"id": "essay", "label": "五、论述题", "question_type": "short", "question_count": 1, "score_each": 20, "total_score": 20, "difficulty_counts": {"easy": 0, "medium": 0, "hard": 1}}]}, "mock_exams": [{"name": "预测试卷（A 卷）", "duration": 120, "total_score": 100, "sections": [{"type": "一、单项选择题（每小题 2 分，共 30 分）", "profile_id": "choice", "question_type": "choice", "instruction": "每小题给出的四个选项中，只有一项最符合题目要求。", "questions": [{"q": "「思想道德与法治」是一门融（　）于一体的思想政治理论课。", "options": ["A. 理论性、艺术性、科学性、教育性、灵活性", "B. 思想性、科学性、人文性、理论性、趣味性", "C. 思想性、形象性、艺术性、科学性、实践性", "D. 思想性、政治性、科学性、理论性、实践性"], "answer": "D", "analysis": "对应「0.2 思想道德与法治的关系」：课程性质直接记忆题。", "kp_id": "s0-k2", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "大学生应以（　）为根本要求，努力成长为担当民族复兴大任的时代新人。", "options": ["A. 有理想、有道德、有文化、有纪律", "B. 有理想、有本领、有担当", "C. 有知识、有能力、有责任", "D. 有信念、有学识、有作为"], "answer": "B", "analysis": "对应「0.1 新时代与时代新人」：党的十九大提出的根本要求为有理想、有本领、有担当。", "kp_id": "s0-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "人生观主要通过人生目的、人生态度、人生价值三个方面体现出来，其中居于核心地位、决定人生道路的是（　）", "options": ["A. 人生态度", "B. 人生价值", "C. 人生目的", "D. 人生理想"], "answer": "C", "analysis": "对应「1.1 人生观与人的本质」：人生目的回答人为什么活着，决定人生道路、人生态度和人生价值标准。", "kp_id": "s1-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "马克思主义认为，人的本质在其现实性上是（　）", "options": ["A. 一切自然属性的总和", "B. 自由", "C. 一切社会关系的总和", "D. 人的自私本性"], "answer": "C", "analysis": "对应「1.1 人生观与人的本质」：人的本质不是单个人所固有的抽象物，在其现实性上是一切社会关系的总和，社会属性是人的本质属性。", "kp_id": "s1-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "「今朝有酒今朝醉，管他明日谁是谁」反映的是一种（　）", "options": ["A. 拜金主义", "B. 享乐主义", "C. 极端个人主义", "D. 实用主义"], "answer": "B", "analysis": "对应「1.2 高尚人生追求与错误人生观批判」：只顾眼前享乐、不思进取是典型享乐主义人生观。", "kp_id": "s1-k2", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "信念的最集中、最高的表现形式是（　）", "options": ["A. 信仰", "B. 理想", "C. 意志", "D. 志向"], "answer": "A", "analysis": "对应「2.1 理想信念的内涵与特征」：信仰是信念最集中、最高的表现形式。", "kp_id": "s2-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "实现中华民族伟大复兴的中国梦，必须弘扬（　）", "options": ["A. 民族精神", "B. 时代精神", "C. 中国精神", "D. 优良传统"], "answer": "C", "analysis": "对应「3.1 中国精神的内涵」：中国梦的实现必须弘扬以爱国主义为核心的民族精神和以改革创新为核心的时代精神构成的中国精神。", "kp_id": "s3-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "爱国主义在不同的历史和文化背景下有着不同的内涵和特点。这表明爱国主义是（　）", "options": ["A. 客观的、具体的", "B. 历史的、具体的", "C. 客观的、抽象的", "D. 主观的、现实的"], "answer": "B", "analysis": "对应「3.2 爱国主义及其时代要求」：爱国主义随历史条件变化而呈现不同内涵，是历史的、具体的。", "kp_id": "s3-k2", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "社会主义核心价值观中，「自由、平等、公正、法治」是（　）的价值要求。", "options": ["A. 国家层面", "B. 社会层面", "C. 公民层面", "D. 普世层面"], "answer": "B", "analysis": "对应「4.1 社会主义核心价值观的内容」：国家层面是富强民主文明和谐，社会层面是自由平等公正法治，公民层面是爱国敬业诚信友善。", "kp_id": "s4-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "社会主义道德的核心是（　）", "options": ["A. 集体主义", "B. 共产主义", "C. 社会公德", "D. 为人民服务"], "answer": "D", "analysis": "对应「5.3 社会主义道德的核心与原则」：核心是为人民服务，原则是集体主义——两处不要混淆。", "kp_id": "s5-k3", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "社会主义职业道德的最基本要求是（　）", "options": ["A. 爱岗敬业", "B. 办事公道", "C. 诚实守信", "D. 奉献社会"], "answer": "A", "analysis": "对应「5.5 职业道德与家庭美德」：爱岗敬业是最基本要求，奉献社会是最高层次要求。", "kp_id": "s5-k5", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "法律区别于其他社会规范的首要之处在于（　）", "options": ["A. 法律是从来就有的", "B. 法律是一种行为规范", "C. 法律是由国家创制并保证实施的社会规范", "D. 法律是全体社会成员意志的体现"], "answer": "C", "analysis": "对应「6.1 法律的含义与运行」：由国家制定或认可、以国家强制力保证实施，是法律区别于道德等其他社会规范的首要特征。", "kp_id": "s6-k1", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "我国的政权组织形式是（　）", "options": ["A. 人民代表大会制度", "B. 人民民主专政制度", "C. 政治协商制度", "D. 民族区域自治制度"], "answer": "A", "analysis": "对应「6.2 我国宪法与法律部门」：人民代表大会制度是政体（政权组织形式）；人民民主专政是国体。", "kp_id": "s6-k2", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "在权利保障体系中，（　）是权利保障的最后防线。", "options": ["A. 宪法保障", "B. 立法保障", "C. 司法保障", "D. 行政保护"], "answer": "C", "analysis": "对应「6.5 尊重和维护法律权威」：宪法保障是前提和基础，立法保障是重要条件，行政保护是关键环节，司法保障是最后防线。", "kp_id": "s6-k5", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "下列关于法律权利与法律义务关系的表述中，正确的是（　）", "options": ["A. 权利与义务可以相互替代", "B. 劳动和受教育既是公民的权利又是公民的义务", "C. 每个人要么是纯粹的权利主体，要么是纯粹的义务主体", "D. 法律义务的设定不需要以法律权利为根据"], "answer": "B", "analysis": "对应「6.6 法律权利与法律义务」：部分权利义务具有复合性，劳动和受教育是典型；每个人既是权利主体又是义务主体，二者不可分割。", "kp_id": "s6-k6", "score": 2, "difficulty": "hard", "type": "choice"}]}, {"type": "二、多项选择题（每小题 2 分，共 10 分）", "profile_id": "mchoice", "question_type": "mchoice", "instruction": "每小题给出的四个选项中，至少有两项符合题目要求，多选、少选、错选均不得分。", "questions": [{"q": "理想信念的作用主要体现在（　）", "options": ["A. 昭示人生的奋斗目标", "B. 提供人生的前进动力", "C. 提高人生的精神境界", "D. 规避人生的风险挫折"], "answer": "ABC", "analysis": "对应「2.2 理想信念的作用」：三大作用为昭示目标、提供动力、提高境界；「规避风险」为干扰项。", "kp_id": "s2-k2", "score": 2, "difficulty": "easy", "type": "mchoice"}, {"q": "中国人民在长期奋斗中培育、继承、发展起来的伟大民族精神表现为（　）", "options": ["A. 伟大创造精神", "B. 伟大奋斗精神", "C. 伟大团结精神", "D. 伟大梦想精神"], "answer": "ABCD", "analysis": "对应「3.1 中国精神的内涵」：四个伟大精神全选。", "kp_id": "s3-k1", "score": 2, "difficulty": "medium", "type": "mchoice"}, {"q": "社会公德的主要内容包括（　）", "options": ["A. 文明礼貌", "B. 助人为乐", "C. 爱护公物、保护环境", "D. 遵纪守法"], "answer": "ABCD", "analysis": "对应「5.4 社会公德与网络道德」：社会公德五项内容——文明礼貌、助人为乐、爱护公物、保护环境、遵纪守法。", "kp_id": "s5-k4", "score": 2, "difficulty": "medium", "type": "mchoice"}, {"q": "我国宪法确立的基本原则包括（　）", "options": ["A. 党的领导原则", "B. 人民主权原则", "C. 尊重和保障人权原则", "D. 社会主义法治原则"], "answer": "ABCD", "analysis": "对应「6.2 我国宪法与法律部门」：宪法五项基本原则还包括民主集中制原则。", "kp_id": "s6-k2", "score": 2, "difficulty": "medium", "type": "mchoice"}, {"q": "大学生培养法治思维的正确途径有（　）", "options": ["A. 学习法律知识", "B. 掌握法律方法", "C. 参与法律实践", "D. 养成守法习惯、守住法律底线"], "answer": "ABCD", "analysis": "对应「6.4 法治思维」：五条途径为学习法律知识、掌握法律方法、参与法律实践、养成守法习惯、守住法律底线。", "kp_id": "s6-k4", "score": 2, "difficulty": "hard", "type": "mchoice"}]}, {"type": "三、简答题（每小题 5 分，共 20 分）", "profile_id": "short", "question_type": "short", "instruction": "要点完整、条理清楚即可得分。", "questions": [{"q": "如何确立积极进取的人生态度？", "answer": "①人生须认真——以认真的态度对待人生，严肃思考人生应有的意义，明确生活目标和肩负的责任；②人生当务实——从人生的实际出发，以求真务实的作风做好每一件事；③人生应乐观——乐观向上、热爱生活、对人生充满自信；④人生要进取——积极进取，不断丰富人生的意义，在贡献中提升生命的价值。", "analysis": "对应「1.3 积极进取的人生态度」：四个方面是背诵要点，属送分题。", "kp_id": "s1-k3", "score": 5, "difficulty": "easy", "type": "short"}, {"q": "中华传统美德的基本精神体现在哪些方面？", "answer": "①重视整体利益，强调责任奉献；②推崇「仁爱」原则，注重以和为贵；③提倡人伦价值，重视道德义务；④追求精神境界，向往理想人格；⑤强调道德修养，注重道德践履。", "analysis": "对应「5.2 中华传统美德与中国革命道德」：五点基本精神，逐点给分。", "kp_id": "s5-k2", "score": 5, "difficulty": "medium", "type": "short"}, {"q": "简述中国革命道德的当代价值。", "answer": "①有利于加强和巩固社会主义和共产主义的理想信念；②有利于培育和践行社会主义核心价值观；③有利于引导人们树立正确的道德观；④有利于培育良好的社会道德风尚。", "analysis": "对应「5.2 中华传统美德与中国革命道德」：四点当代价值。", "kp_id": "s5-k2", "score": 5, "difficulty": "medium", "type": "short"}, {"q": "简述法治思维的含义及大学生培养法治思维的途径。", "answer": "法治思维是以法治价值和法治精神为导向，运用法律原则、法律规则、法律方法思考和处理问题的思维模式，是一种融法律的价值属性和工具理性于一体的特殊的高级法律意识。培养途径：①学习法律知识——前提；②掌握法律方法——基本要素；③参与法律实践——在实践中训练和运用；④养成守法习惯——习惯性思维；⑤守住法律底线——法律红线不可逾越、底线不可触碰。", "analysis": "对应「6.4 法治思维」：含义四层（正当性、规范性、可靠逻辑、科学）+五条途径。", "kp_id": "s6-k4", "score": 5, "difficulty": "hard", "type": "short"}]}, {"type": "四、材料分析题（每小题 10 分，共 20 分）", "profile_id": "material", "question_type": "reading", "instruction": "结合材料，运用所学知识分析回答问题。", "questions": [{"q": "阅读上述材料并回答：(1) 为什么说年轻时期确立正确的理想信念能够为人的一生提供「无穷的力量」？(2) 青年如何在实现中国梦的实践中放飞自己的青春梦想？", "type": "reading", "stimulus": {"title": "材料", "paragraphs": ["材料1：黄旭华被誉为「中国核潜艇之父」。1937年日本全面侵华，年少的黄旭华目睹无数城市在轰炸下化为废墟，默默思考：国家太弱就会任人欺凌！他毅然把专业志向与国家需要结合在一起，从20世纪50年代起隐姓埋名30多年，自力更生、艰苦奋斗，战斗在核潜艇研制一线。1970年我国第一艘鱼雷攻击型核潜艇顺利下水，中国成为世界上第五个拥有核动力潜艇的国家。年逾九旬的黄旭华仍每天准时出现在研究所，他说：「研制核潜艇是我的梦想，一辈子从事自己热爱的事业，我很幸福。」", "材料2：地球物理学家黄大年青年时期立下「振兴中华，乃我辈之责」的宏大志向。2009年，他放弃国外优越的生活科研条件回到母校，作为国家多个技术攻关项目的首席专家，带领团队只争朝夕、顽强拼搏，填补多项国内技术空白，部分成果达到国际领先水平。他秉持「祖国的需要就是最高需要」的人生信条，为实现科技强国梦殚精竭虑，直到生命最后一刻。"], "source": "改编自「⭐期末考试练习题、知识点（总结）」第三章材料分析题（《人民日报》《光明日报》报道）"}, "answer": "(1) 理想与信念相互依存，理想是信念的根据和前提，信念是理想实现的重要保障。理想信念的作用：第一，昭示奋斗目标——对人生历程起导向作用，材料中黄旭华、黄大年都在青年时期树立了正确的理想信念，明确了人生方向；第二，提供前进动力——有了坚定正确的理想信念，就会以惊人的毅力和不懈的努力成就事业、创造奇迹，两位科学家正是在理想信念指引下作出突出贡献；第三，提高精神境界——使精神生活各方面统一起来，引导人们追求更高人生目标、塑造高尚人格。因此青年时代确立正确的理想信念能为人的一生提供「无穷的力量」。(2) 青年学生只有把实现理想的道路建立在脚踏实地的奋斗上，才能放飞青春梦想：①立志当高远——放开眼界，不满足现状，不屈服于一时困难，不计较个人私利得失；②立志做大事——把个人命运与国家和人民的命运联系在一起，在为社会理想的奋斗中实现个人理想；③立志须躬行——崇高理想的实现需要一点一滴的奋斗，起点就在脚下、在平凡的岗位上；④伟大出自平凡——祖国的富强、民族的繁荣、人民的幸福，需要每一个社会成员尽其才、奋其志。", "analysis": "对应「2.3 为实现中国梦注入青春能量」与「2.2 理想信念的作用」。答题结构：理想信念三作用逐一结合材料人物 → 立志四要点作答。此题为历年高频材料题原题。", "kp_id": "s2-k3", "score": 10, "difficulty": "hard"}, {"q": "阅读上述材料并回答：(1) 聂树斌案的复查、改判反映了什么问题？(2) 聂树斌案的错误为什么会发生，应当汲取怎样的教训？", "type": "reading", "stimulus": {"title": "材料", "paragraphs": ["材料：1995年4月，聂树斌因涉嫌强奸、故意杀人被判处死刑并被执行死刑。此后其父母持续申诉。2005年，另案罪犯王书金供认该案系其所为。2014年12月，最高人民法院指令山东省高级人民法院异地复查此案。2016年12月2日，最高人民法院第二巡回法庭对该案再审公开宣判，宣告撤销原审判决，改判聂树斌无罪。2017年3月，河北省高级人民法院作出国家赔偿决定，赔偿聂树斌家属268万余元。"], "source": "改编自「⭐期末考试练习题、知识点（总结）」第六章材料分析题（《光明日报》报道）"}, "answer": "(1) 反映的问题：第一，我国司法坚持有错必纠的司法原则，最高司法机关敢于直面历史错案、依法改判，体现了实事求是和司法公正；第二，异地复查、公开宣判是保障司法公正的有效方法；第三，国家赔偿制度的落实体现了对公民权利的尊重和保障，我国公民有依法保护自己合法权益的权利，当个人合法权利受到侵犯时要依法维权。(2) 成因与教训：第一，案件办理中存在未严格依法办案、审判程序不规范、定罪证据把关不严等问题，说明必须坚持以事实为根据、以法律为准绳，严格贯彻罪刑法定、疑罪从无原则；第二，司法独立在某种程度上受到干扰，说明要深化司法体制改革，落实让审理者裁判、由裁判者负责，保障司法机关依法独立行使职权；第三，从犯罪到执行刑罚过程过于迅速、纠错过程漫长，说明推进法治国家建设仍然任重道远，必须坚持法治思维、走依法治国道路，加强对司法权的监督制约，让人民群众在每一个司法案件中感受到公平正义。", "analysis": "对应「6.6 法律权利与法律义务」与「6.3 全面依法治国与法治道路」。答题结构：正面（纠错原则、异地复查、国家赔偿与依法维权）+ 反面（程序不规范、司法受干预、纠错成本高）。", "kp_id": "s6-k6", "score": 10, "difficulty": "medium"}]}, {"type": "五、论述题（20 分）", "profile_id": "essay", "question_type": "short", "instruction": "观点正确、要点完整、联系实际、逻辑清楚。", "questions": [{"q": "如何认识社会主义道德的核心和原则？请联系实际加以论述。", "answer": "社会主义道德建设以为人民服务为核心、以集体主义为原则。(1) 为人民服务是社会主义道德建设的核心：①为人民服务是社会主义经济基础和人际关系的客观要求——公有制为主体的经济制度和人民当家作主的政治制度，决定了道德建设必须服务于人民；②为人民服务是社会主义市场经济健康发展的要求——市场经济自身的弱点和消极方面需要道德引导，诚实守信、服务人民是市场经济良性运行的道德基础；③为人民服务是先进性要求和广泛性要求的统一——对共产党员和先进分子是更高要求，对普通公民也是可以做到的基本要求。(2) 集体主义是社会主义道德建设的原则：①强调国家利益、社会整体利益和个人利益的辩证统一；②强调国家利益、社会整体利益高于个人利益；③重视和保障个人的正当利益。(3) 联系实际：新时代培育和践行社会主义核心价值观、加强公民道德建设，都要抓住为人民服务这个核心——大学生在志愿服务、抗疫救灾、支教助学中奉献社会，就是为人民服务的生动实践；同时正确处理个人与集体的关系，反对极端个人主义，在集体奋斗中实现个人价值，做到明大德、守公德、严私德。", "analysis": "对应「5.3 社会主义道德的核心与原则」。评分点：核心三点+原则三点+联系实际（志愿服务/核心价值观/明大德守公德严私德任选）。", "kp_id": "s5-k3", "score": 20, "difficulty": "hard", "type": "short"}]}]}, {"name": "预测试卷（B 卷）", "duration": 120, "total_score": 100, "sections": [{"type": "一、单项选择题（每小题 2 分，共 30 分）", "profile_id": "choice", "question_type": "choice", "instruction": "每小题给出的四个选项中，只有一项最符合题目要求。", "questions": [{"q": "（　）是我们理解当前所处历史方位的关键词。", "options": ["A. 新时代", "B. 新征程", "C. 中国梦", "D. 新起点"], "answer": "A", "analysis": "对应「0.1 新时代与时代新人」：新时代是理解当前历史方位的关键词。", "kp_id": "s0-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "关于思想道德与法律的关系，下列表述正确的是（　）", "options": ["A. 二者都属于社会上层建筑的重要组成部分", "B. 二者相互独立、互不影响", "C. 社会主义法律可以替代思想道德的作用", "D. 思想道德对法律的制定实施没有影响"], "answer": "A", "analysis": "对应「0.2 思想道德与法治的关系」：思想道德与法律都是上层建筑的重要组成部分，相辅相成、缺一不可但不能相互替代。", "kp_id": "s0-k2", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "人生观主要包括人生目的、人生态度和人生价值三个方面，其中人生态度表明人（　）", "options": ["A. 为什么活着", "B. 应当怎样对待生活", "C. 什么样的人生才有意义", "D. 处于什么历史方位"], "answer": "B", "analysis": "对应「1.1 人生观与人的本质」：人生目的回答为什么活着，人生态度表明怎样对待生活，人生价值判别什么样的人生才有意义。", "kp_id": "s1-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "「人的本质不是单个人所固有的抽象物，在其现实性上，它是一切社会关系的总和。」这说明（　）", "options": ["A. 自然属性是人的本质属性", "B. 社会属性是人的本质属性", "C. 自然属性和社会属性都是人的本质属性", "D. 自由是人的本质属性"], "answer": "B", "analysis": "对应「1.1 人生观与人的本质」：马克思的著名论断指向人的社会属性。", "kp_id": "s1-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "「人为财死，鸟为食亡」「金钱是万能的」反映的人生观是（　）", "options": ["A. 享乐主义人生观", "B. 拜金主义人生观", "C. 极端个人主义人生观", "D. 合理利己主义人生观"], "answer": "B", "analysis": "对应「1.2 高尚人生追求与错误人生观批判」：把金钱作为衡量人生价值的唯一标准是拜金主义。", "kp_id": "s1-k2", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "理想区别于幻想、空想的特点是（　）", "options": ["A. 理想是个人对幻想、空想的改进", "B. 理想源于实践、具有实现的可能，是对未来的向往和追求", "C. 理想是永恒不变的", "D. 崇高的理想与信念相伴，而空想、幻想则与信念无缘"], "answer": "B", "analysis": "对应「2.1 理想信念的内涵与特征」：理想具有超越性、实践性、时代性，源于现实又超越现实且具有实现可能。", "kp_id": "s2-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "时代精神的核心是（　）", "options": ["A. 爱国主义", "B. 改革创新", "C. 团结统一", "D. 自强不息"], "answer": "B", "analysis": "对应「3.1 中国精神的内涵」：民族精神的核心是爱国主义，时代精神的核心是改革创新。", "kp_id": "s3-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "新时代爱国主义的基本要求不包括（　）", "options": ["A. 坚持爱国主义和社会主义相统一", "B. 维护祖国统一和民族团结", "C. 尊重和传承中华民族历史和文化", "D. 排斥借鉴世界各国的优秀文明成果"], "answer": "D", "analysis": "对应「3.2 爱国主义及其时代要求」：新时代爱国主义要求坚持立足民族又面向世界，D 项说法与之相悖。", "kp_id": "s3-k2", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "社会主义核心价值观中，「爱国、敬业、诚信、友善」是（　）的价值要求。", "options": ["A. 国家层面", "B. 社会层面", "C. 公民层面", "D. 个人与社会共同层面"], "answer": "C", "analysis": "对应「4.1 社会主义核心价值观的内容」：公民层面的价值要求。", "kp_id": "s4-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "人类道德起源的第一个历史前提是（　）", "options": ["A. 劳动", "B. 实践", "C. 自我意识", "D. 社会关系"], "answer": "A", "analysis": "对应「5.1 道德的起源、本质与作用」：劳动是道德起源的第一个历史前提；社会关系是客观条件，自我意识是主观条件。", "kp_id": "s5-k1", "score": 2, "difficulty": "easy", "type": "choice"}, {"q": "对待中国传统道德的正确态度是（　）", "options": ["A. 全盘肯定", "B. 全盘否定", "C. 辩证扬弃", "D. 任其自由发展"], "answer": "C", "analysis": "对应「5.2 中华传统美德与中国革命道德」：坚持辩证扬弃，取其精华、去其糟粕，实现创造性转化和创新性发展。", "kp_id": "s5-k2", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "法律实施和实现的基本途径是（　）", "options": ["A. 立法", "B. 守法", "C. 执法", "D. 司法"], "answer": "B", "analysis": "对应「6.1 法律的含义与运行」：法律遵守（守法）是法律实施和实现的基本途径，全体社会成员共同参与。", "kp_id": "s6-k1", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "下列选项中，属于程序法的是（　）", "options": ["A. 《中华人民共和国刑法》", "B. 《中华人民共和国著作权法》", "C. 《中华人民共和国广告法》", "D. 《中华人民共和国民事诉讼法》"], "answer": "D", "analysis": "对应「6.2 我国宪法与法律部门」：诉讼法（刑事/民事/行政诉讼法）属程序法，其余均为实体法。", "kp_id": "s6-k2", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "法律至上具体表现为法律的（　）", "options": ["A. 普遍适用性、优先适用性、不可违抗性", "B. 国家强制性、普遍适用性、可协商性", "C. 优先适用性、灵活性、不可违抗性", "D. 普遍适用性、强制性、有条件性"], "answer": "A", "analysis": "对应「6.3 全面依法治国与法治道路」：法律至上表现为普遍适用性、优先适用性、不可违抗性三方面。", "kp_id": "s6-k3", "score": 2, "difficulty": "medium", "type": "choice"}, {"q": "爱因斯坦说：「一个人对社会的价值，首先取决于他的感情、思想和行动对增进人类利益有多大作用。」这表明人生的价值首先在于（　）", "options": ["A. 奉献", "B. 索取", "C. 存在", "D. 享用"], "answer": "A", "analysis": "对应「1.4 人生价值的评价与实现」：人生的自我价值必须与社会价值相结合，并通过社会价值表现出来；衡量人生价值的标准是个体对社会和他人的贡献（奉献）。", "kp_id": "s1-k4", "score": 2, "difficulty": "hard", "type": "choice"}]}, {"type": "二、多项选择题（每小题 2 分，共 10 分）", "profile_id": "mchoice", "question_type": "mchoice", "instruction": "每小题给出的四个选项中，至少有两项符合题目要求，多选、少选、错选均不得分。", "questions": [{"q": "青年大学生要正确认识理想与现实的关系，做到（　）", "options": ["A. 不要用理想来否定现实", "B. 不要用现实来否定理想", "C. 辩证看待理想与现实的矛盾", "D. 努力超越现实的制约实现理想"], "answer": "ABCD", "analysis": "对应「2.2 理想信念的作用」：理想与现实关系的四点要求全选。", "kp_id": "s2-k2", "score": 2, "difficulty": "easy", "type": "mchoice"}, {"q": "中华民族崇尚精神的优秀传统表现在（　）", "options": ["A. 对物质生活与精神生活相互关系的独到理解上", "B. 中国古人对理想的不懈追求上", "C. 对道德修养和道德教化的重视上", "D. 对理想人格的推崇上"], "answer": "ABCD", "analysis": "对应「3.1 中国精神的内涵」：四个方面全选。", "kp_id": "s3-k1", "score": 2, "difficulty": "medium", "type": "mchoice"}, {"q": "下列属于社会主义职业道德主要内容的有（　）", "options": ["A. 爱岗敬业", "B. 诚实守信", "C. 办事公道", "D. 奉献社会"], "answer": "ABCD", "analysis": "对应「5.5 职业道德与家庭美德」：职业道德包括爱岗敬业、诚实守信、办事公道、热情服务、奉献社会。", "kp_id": "s5-k5", "score": 2, "difficulty": "medium", "type": "mchoice"}, {"q": "建设中国特色社会主义法治体系，要建设（　）", "options": ["A. 完备的法律规范体系", "B. 高效的法治实施体系", "C. 严密的法治监督体系", "D. 有力的法治保障体系"], "answer": "ABCD", "analysis": "对应「6.3 全面依法治国与法治道路」：五大体系还包括完善的党内法规体系。", "kp_id": "s6-k3", "score": 2, "difficulty": "medium", "type": "mchoice"}, {"q": "关于我国公民的权利保障体系，下列说法正确的有（　）", "options": ["A. 宪法保障是权利保障的前提和基础", "B. 立法保障是权利保障的重要条件", "C. 行政保护是权利保障的关键环节", "D. 司法保障是权利保障的最后防线"], "answer": "ABCD", "analysis": "对应「6.5 尊重和维护法律权威」：权利保障四个层次的定位须准确记忆，多选全对。", "kp_id": "s6-k5", "score": 2, "difficulty": "hard", "type": "mchoice"}]}, {"type": "三、简答题（每小题 5 分，共 20 分）", "profile_id": "short", "question_type": "short", "instruction": "要点完整、条理清楚即可得分。", "questions": [{"q": "人生目的在人生实践中具有怎样的重要作用？", "answer": "①人生目的决定人生道路——人生目的不同，选择的人生道路就会不同；②人生目的决定人生态度——正确的人生目的使人积极乐观、脚踏实地，错误的人生目的使人消极懈怠；③人生目的决定人生价值标准——人生目的规定了人生价值的评价标准和追求方向。", "analysis": "对应「1.1 人生观与人的本质」：三个「决定」，直接背诵题。", "kp_id": "s1-k1", "score": 5, "difficulty": "easy", "type": "short"}, {"q": "如何认识个人理想与社会理想之间的辩证关系？", "answer": "①个人理想是处于一定历史条件和社会关系中的个体对自己未来的物质生活、精神生活所产生的向往和追求；社会理想是社会全体成员的共同理想，即在全社会占主导地位的共同奋斗目标；②个人理想与社会理想的关系实质上是个人与社会关系在理想层面的反映；③个人理想以社会理想为指引，社会理想是对个人理想的凝练与升华；④当个人理想与社会理想发生矛盾时，有理想有担当的人应自觉服从社会理想，必要时为社会理想作出奉献。", "analysis": "对应「2.2 理想信念的作用」：定义+关系实质+两方面关系+矛盾处理。", "kp_id": "s2-k2", "score": 5, "difficulty": "medium", "type": "short"}, {"q": "如何做新时代的忠诚爱国者？", "answer": "①推进祖国统一——坚持一个中国原则，推进两岸交流合作，促进两岸同胞团结奋斗，反对「台独」分裂图谋；②促进民族团结——铸牢中华民族共同体意识，尊重各民族的文化传统；③增强国家安全意识——确立总体国家安全观，增强国防意识，履行维护国家安全的义务；④把国家的安全、荣誉和利益放在高于一切的地位，做到爱国的深厚情感、理性认识和实际行动相一致，与祖国同呼吸、共命运。", "analysis": "对应「3.3 做忠诚的爱国者」：三大方面+总体要求。", "kp_id": "s3-k3", "score": 5, "difficulty": "medium", "type": "short"}, {"q": "简述尊重和维护法律权威的基本要求，并说明其重要意义。", "answer": "基本要求：①信仰法律；②遵守法律；③服从法律；④维护法律。重要意义：①尊重和维护法律权威是社会主义法治观念的核心要求和建设社会主义法治国家的前提条件；②对推进国家治理体系和治理能力现代化、实现国家长治久安极为重要；③是实现人民意志、维护人民利益、保障人民权利的基本途径；④是维护个人合法权益的根本保障。", "analysis": "对应「6.5 尊重和维护法律权威」：四要求+四意义。", "kp_id": "s6-k5", "score": 5, "difficulty": "hard", "type": "short"}]}, {"type": "四、材料分析题（每小题 10 分，共 20 分）", "profile_id": "material", "question_type": "reading", "instruction": "结合材料，运用所学知识分析回答问题。", "questions": [{"q": "阅读上述材料并回答：(1) 结合材料分析人生态度对于人生的意义。(2) 大学生应该具有怎样的人生态度？", "type": "reading", "stimulus": {"title": "材料", "paragraphs": ["材料：周末晚上，南京街头一位衣着整洁的中年乞讨者引起路人注意。他曾是南京一所名牌大学的热能博士，1990年毕业留校，分到房子，爱人调到一起，一度前途顺遂。1994年他和爱人双双辞职准备出国，因签证迟迟办不下来而搁浅，此后开公司失败、几份工作均不如意，人生观发生很大变化，最终流落街头乞讨。面对询问他解释：乞讨「没有什么好难为情的」，「我不在意别人怎么想，怎么看，也不想为生活所累，我只想过一种最简单的生活」，每周末出来乞讨，所得就足够一周生活。他的导师感叹「他是很聪明的博士」，前妻则「恨铁不成钢」。"], "source": "改编自「⭐期末考试练习题、知识点（总结）」第一章材料分析题（博士街头乞讨案例）"}, "answer": "(1) 人生态度是人生观的重要内容，是人们通过生活实践所形成的对人生问题的一种相对稳定的心理倾向和精神状态。有什么样的人生观就有什么样的人生态度，人生态度又制约着人们对世界和人生的看法。材料中的博士不正视现实、惧怕生活的劳苦艰辛，选择消极退缩的人生态度，辜负了导师的培养和自身的才智，说明消极的人生态度会引导人走向沉沦；反之，积极的人生态度背后一定有正确的人生观作为精神支柱，能够激励人战胜困难、实现人生价值。(2) 大学生应有的人生态度：①人生须认真——以认真的态度对待人生，严肃思考人生意义，明确生活目标和肩负的责任；②人生当务实——从实际出发，以求真务实的精神创造人生、做好每一件事，不逃避现实的考验；③人生应乐观——乐观向上、热爱生活、对人生充满自信，在挫折面前不消沉；④人生要进取——积极进取，在贡献中提升生命价值，做生活的主人，不虚度不可重来的人生，为亲人和社会作出自己的贡献。", "analysis": "对应「1.3 积极进取的人生态度」。答题结构：人生态度的界定+消极态度的危害（结合材料）+积极人生态度四要点。", "kp_id": "s1-k3", "score": 10, "difficulty": "medium"}, {"q": "阅读上述材料并回答：(1) 人生观包含哪些内容？(2) 青年人应该如何扣好人生的扣子？", "type": "reading", "stimulus": {"title": "材料", "paragraphs": ["材料：习近平总书记指出：「这就像穿衣服扣扣子一样，如果第一粒扣子扣错了，剩余的扣子都会扣错。人生的扣子从一开始就要扣好。青年的价值取向决定了未来整个社会的价值取向，而青年又处在价值观形成和确立的时期，抓好这一时期的价值观养成十分重要。」"], "source": "改编自「⭐期末考试练习题、知识点（总结）」第四章材料分析题（习近平总书记在北京大学师生座谈会上的讲话）"}, "answer": "(1) 人生观包含人生目的（回答人为什么活着）、人生态度（表明人应当怎样对待生活）、人生价值（判别什么样的人生才有意义）三个方面。(2) 青年扣好人生扣子，核心是在价值观形成确立的关键时期自觉践行社会主义核心价值观：①勤学——下得苦功夫、求得真学问，为价值观养成打下知识根基；②修德——加强道德修养、注重道德实践，明大德、守公德、严私德；③明辨——善于明辨是非、善于决断选择，在纷繁复杂的社会思潮中站稳立场；④笃实——于实处用力，知行合一、夯实基础、久久为功，把核心价值观内化于心、外化于行。青年要把个人理想融入国家和民族的事业中，从小事做起、从身边做起，使正确价值观成为一生受用的精神底色。", "analysis": "对应「4.4 勤学修德明辨笃实」。答题结构：人生观三要素（送分）+扣扣子比喻的落点（价值观养成）+勤学修德明辨笃实四方面。", "kp_id": "s4-k4", "score": 10, "difficulty": "hard"}]}, {"type": "五、论述题（20 分）", "profile_id": "essay", "question_type": "short", "instruction": "观点正确、要点完整、联系实际、逻辑清楚。", "questions": [{"q": "试述个人理想与社会理想的关系，并论述当代大学生如何在实现中国梦的实践中放飞青春梦想。", "answer": "(1) 个人理想与社会理想的辩证关系：①个人理想是个体对未来物质生活和精神生活的向往与追求，社会理想是全社会占主导地位的共同奋斗目标；②二者关系的实质是个人与社会关系在理想层面的反映——个人理想以社会理想为指引，社会理想是对个人理想的凝练与升华；③个人理想的实现必须以社会理想的实现为前提和基础，脱离社会理想的个人理想往往流于空想；④当二者发生矛盾时，有理想有担当的人应当自觉使个人理想服从社会理想。(2) 大学生放飞青春梦想的路径：①立志当高远——放开眼界，不满足于现状，不屈服于一时困难，不计较个人私利得失；②立志做大事——把个人命运与国家和人民的命运联系在一起，在为实现社会理想的奋斗中实现个人理想，把个人理想融入中华民族伟大复兴的中国梦；③立志须躬行——崇高理想的实现需要一点一滴的奋斗，起点就在脚下，在一切平凡的岗位上、在扎扎实实的学习和工作中；④伟大出自平凡——祖国的富强、民族的繁荣、人民的幸福，需要每一个社会成员尽其才、奋其志。(3) 联系实际：新时代大学生应把学习作为首要任务，让勤奋学习成为青春远航的动力；积极投身社会实践和志愿服务，在奉献祖国、服务人民中实现人生价值；正确对待理想与现实的矛盾，既仰望星空又脚踏实地，在与历史同向、与祖国同行、与人民同在中书写无愧于时代的青春篇章。", "analysis": "对应「2.2 理想信念的作用」与「2.3 为实现中国梦注入青春能量」。评分点：关系四层+立志三要点+伟大出自平凡+联系实际（学习、实践、知行合一）。", "kp_id": "s2-k3", "score": 20, "difficulty": "hard", "type": "short"}]}]}], "seed": 20261028, "version": "1.0.0", "exam_meta": {"source_files": ["⭐期末考试练习题、知识点（总结）.txt", "00-绪论知识点及练习题.txt", "01-第一章知识点及练习题.txt", "02-第二章追求远大理想坚定崇高信念.txt", "03-第三章继承优良传统弘扬中国精神.txt", "04-第四章明确价值要求 践行价值准则.txt", "05-第五章遵守道德规范 锤炼道德品格.txt", "06-第六章学习法治思想 提升法治素养.txt"], "mode": "max", "note": "重要度星级由真题命中频率数据驱动（exam_stats.py）"}};
+const SC = {5:"#E74C3C",4:"#E67E22",3:"#F1C40F",2:"#3498DB",1:"#95A5A6",0:"#BDC3C7"};
+const GCH = ["#5FA8E8","#4CC08A","#A88BFA","#F0975A","#41C8BC","#E36C5B","#8FA6C9","#6C8EF8"];
+const starStr = n => { n=Math.max(1,Math.min(5,n||1)); return "★".repeat(n)+"☆".repeat(5-n); };
+const starColor = n => SC[n] || SC[0];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const escJs = s => String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/"/g,"&quot;");
+const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const courseName = (()=>{ let t=DATA.title||"课程"; ["期末复习资料","复习资料","期末复习","复习"].forEach(s=>{ if(t.endsWith(s)) t=t.slice(0,-s.length); }); return t.replace(/[《》\s]/g,"")||DATA.title; })();
+
+/* ================= 主题系统 ================= */
+const theme = {mode:"light", bright:100, tint:0, eyeCare:false};
+function loadTheme(){ try{ const s=localStorage.getItem("srb_theme"); if(s) Object.assign(theme, JSON.parse(s)); }catch(e){} }
+function saveTheme(){ try{ localStorage.setItem("srb_theme", JSON.stringify(theme)); }catch(e){} }
+function applyTheme(){
+  document.documentElement.dataset.theme = theme.mode;
+  document.getElementById("btnThemeMode").textContent = theme.mode==="dark" ? "☀️" : "🌙";
+  const eyeBtn = document.getElementById("eyeCareBtn");
+  if (eyeBtn) eyeBtn.classList.toggle("on", !!theme.eyeCare);
+  const dim = document.getElementById("dimLayer"), tint = document.getElementById("tintLayer");
+  // 护眼模式：柔和暖光 + 适度降亮（低蓝光护眼），覆盖手动参数
+  if (theme.eyeCare){
+    dim.style.background = "rgba(0,0,0,0.16)";
+    dim.style.mixBlendMode = "multiply"; dim.style.display = "block";
+    tint.style.background = "rgba(255,160,50,0.32)";
+    tint.style.mixBlendMode = "multiply"; tint.style.display = "block";
+  } else {
+    if (theme.bright < 100){
+      dim.style.background = `rgba(0,0,0,${(100-theme.bright)/100*0.72})`;
+      dim.style.mixBlendMode = "multiply"; dim.style.display = "block";
+    } else if (theme.bright > 100){
+      dim.style.background = `rgba(255,255,255,${(theme.bright-100)/100*0.42})`;
+      dim.style.mixBlendMode = "screen"; dim.style.display = "block";
+    } else dim.style.display = "none";
+    if (theme.tint > 0){
+      tint.style.background = `rgba(255,140,40,${theme.tint/100*0.45})`;
+      tint.style.mixBlendMode = "multiply"; tint.style.display = "block";
+    } else if (theme.tint < 0){
+      tint.style.background = `rgba(70,130,255,${-theme.tint/100*0.40})`;
+      tint.style.mixBlendMode = "multiply"; tint.style.display = "block";
+    } else tint.style.display = "none";
+  }
+  document.getElementById("rgBright").value = theme.bright;
+  document.getElementById("rgTint").value = theme.tint;
+  document.getElementById("vBright").textContent = theme.bright + "%";
+  document.getElementById("vTint").textContent = theme.tint>0?("暖 "+theme.tint):(theme.tint<0?("冷 "+(-theme.tint)):"中性");
+}
+function toggleThemeMode(){ theme.mode = theme.mode==="dark"?"light":"dark"; applyTheme(); saveTheme(); }
+function toggleThemePanel(){ document.getElementById("themePanel").classList.toggle("open"); }
+function toggleEyeCare(){
+  theme.eyeCare = !theme.eyeCare;
+  applyTheme(); saveTheme();
+}
+function onThemeSlider(which){
+  theme.bright = +document.getElementById("rgBright").value;
+  theme.tint = +document.getElementById("rgTint").value;
+  theme.eyeCare = false;   // 手动调节即退出护眼预设
+  applyTheme(); saveTheme();
+}
+function resetTheme(){ theme.mode="light"; theme.bright=100; theme.tint=0; theme.eyeCare=false; applyTheme(); saveTheme(); }
+
+/* ================= 复习资料版 ================= */
+function kpCard(kp){
+  const st = kp.importance||0;
+  const hits = (kp.stats && kp.stats.hits) ? ` <span class="hits">真题命中 ${kp.stats.hits} 次</span>` : "";
+  const dim = kp.dimension ? ` <span class="badge dim">${esc(kp.dimension)}</span>` : "";
+  const starBadge = st ? `<span style="color:${starColor(st)};font-size:14px">${starStr(st)}</span>` : "";
+  const body = (kp.content||[]).map(p=>`<p>${esc(p)}</p>`).join("") +
+    (kp.examples||[]).map(e=>`<div class="ex">▶ ${esc(e)}</div>`).join("");
+  return `<div class="kp" data-stars="${st}" id="kp-${esc(kp.id)}">
+    <div class="kp-head"><span class="num">${esc(kp.title)}</span>${starBadge}${dim}${hits}</div>
+    <div class="kp-body">${body}</div></div>`;
+}
+function buildContent(){
+  let html = "";
+  if (DATA.summary){
+    html += `<div class="section overview" id="sec-summary"><h2 class="chapter">📌 复习总览与建议</h2>` +
+      DATA.summary.map(p=>`<p>${esc(p)}</p>`).join("") + `</div>`;
+  }
+  DATA.chapters.forEach((ch,i)=>{
+    const st = ch.importance||0;
+    html += `<div class="section chapterSec" data-stars="${st}" id="sec-${i}">
+      <h2 class="chapter">${esc(ch.title)}
+        ${st?`<span style="color:${starColor(st)};font-size:14px">${starStr(st)}</span>`:""}</h2>
+      ${ch.overview?`<div class="ch-overview">${esc(ch.overview)}</div>`:""}`;
+    (ch.knowledge_points||[]).forEach(kp=>{ html += kpCard(kp); });
+    html += `</div>`;
+  });
+  const scored = [];
+  DATA.chapters.forEach(ch=>(ch.knowledge_points||[]).forEach(kp=>{
+    if (kp.stats && kp.stats.hits>0) scored.push({t:kp.title,h:kp.stats.hits});
+  }));
+  if (scored.length){
+    scored.sort((a,b)=>b.h-a.h);
+    const mx = scored[0].h, top = scored.slice(0,12);
+    html += `<div class="section" id="sec-chart"><h2 class="chapter">📊 真题考点频率 Top${top.length}</h2>
+      <div class="chart">` + top.map(r=>
+      `<div class="row"><div class="name" title="${esc(r.t)}">${esc(r.t)}</div>
+       <div class="bar" style="width:${Math.max(4, r.h/mx*55)}%;background:${starColor(r.h===mx?5:(r.h>=mx*.6?4:(r.h>=mx*.3?3:2)))}"></div>
+       <div class="val">${r.h} 次</div></div>`).join("") + `</div></div>`;
+  }
+  if (DATA.keywords && DATA.keywords.length){
+    html += `<div class="section" id="sec-kw"><h2 class="chapter">📖 重点术语速查</h2>
+      <div class="kw">${DATA.keywords.map(k=>`<span>${esc(k)}</span>`).join("")}</div></div>`;
+  }
+  document.getElementById("contentView").innerHTML = html;
+  let ol = DATA.summary?`<a href="#sec-summary" onclick="go(event,'#sec-summary')">📌 复习总览</a>`:"";
+  DATA.chapters.forEach((ch,i)=>{ ol += `<a href="#sec-${i}" onclick="go(event,'#sec-${i}')">${esc(ch.title)}</a>`; });
+  if (scored.length) ol += `<a href="#sec-chart" onclick="go(event,'#sec-chart')">📊 考点频率</a>`;
+  if (DATA.keywords && DATA.keywords.length) ol += `<a href="#sec-kw" onclick="go(event,'#sec-kw')">📖 术语速查</a>`;
+  document.getElementById("outline").innerHTML = ol;
+}
+function go(ev,sel){ ev.preventDefault(); document.querySelector(sel).scrollIntoView({behavior:"smooth"}); }
+function filterStars(btn){
+  document.querySelectorAll(".chip[data-min]").forEach(c=>c.classList.remove("on"));
+  btn.classList.add("on");
+  const min = +btn.dataset.min;
+  document.querySelectorAll(".kp").forEach(el=>el.classList.toggle("hidden", +el.dataset.stars < min));
+  document.querySelectorAll(".chapterSec").forEach(sec=>{
+    const any = sec.querySelector(".kp:not(.hidden)");
+    sec.classList.toggle("hidden", min>0 && !any);
+  });
+}
+function resetFilter(){
+  document.querySelectorAll(".chip[data-min]").forEach(c=>c.classList.toggle("on", c.dataset.min==="0"));
+  document.querySelectorAll(".kp,.chapterSec").forEach(x=>x.classList.remove("hidden"));
+}
+function jumpToKp(id){
+  switchView("content");
+  resetFilter();
+  setTimeout(()=>{ const t = document.getElementById("kp-"+id);
+    if (t) t.scrollIntoView({behavior:"smooth",block:"center"}); }, 80);
+}
+
+/* ================= 知识图谱（Obsidian 风格） ================= */
+const G = {nodes:[], links:[], alpha:1, frames:0, running:false, fitted:false,
+           scale:1, tx:0, ty:0, inited:false, adj:[]};
+let nodeDrag=null, panDrag=null, hoverIdx=-1;
+
+function buildGraph(){
+  const svg = document.getElementById("gsvg");
+  const NS = "http://www.w3.org/2000/svg";
+  const N = G.nodes, L = G.links;
+  N.push({id:"__root", type:"root", label:DATA.title, color:"#7FB3E8", stars:0, hits:0,
+          r:28, terms:[], ch:-1, x:(Math.random()-.5)*300, y:(Math.random()-.5)*300, vx:0, vy:0});
+  DATA.chapters.forEach((ch,i)=>{
+    const col = GCH[i%GCH.length];
+    const ci = N.length;
+    N.push({id:"ch"+i, type:"ch", label:ch.title, color:col, stars:0, hits:0, r:16,
+            terms:[], ch:ci, x:(Math.random()-.5)*500, y:(Math.random()-.5)*500, vx:0, vy:0});
+    L.push({a:0, b:ci, kind:"tree", color:col, rest:300});
+    (ch.knowledge_points||[]).forEach(kp=>{
+      const st = kp.importance||0, hits = (kp.stats&&kp.stats.hits)||0;
+      N.push({id:kp.id, type:"kp", label:kp.title, color:col, stars:st, hits,
+              r: Math.max(9, Math.min(19, 7+st*1.8+Math.min(hits,20)*.3)),
+              terms:kp.match_terms||[], ch:ci,
+              x:(Math.random()-.5)*500, y:(Math.random()-.5)*500, vx:0, vy:0});
+      L.push({a:ci, b:N.length-1, kind:"tree", color:col, rest:150+st*8});
+    });
+  });
+  const kps = N.filter(n=>n.type==="kp" && n.terms.length);
+  const cand = [];
+  for (let i=0;i<kps.length;i++) for (let j=i+1;j<kps.length;j++){
+    if (kps[i].ch===kps[j].ch) continue;
+    const shared = kps[i].terms.filter(t=>kps[j].terms.includes(t));
+    if (shared.length) cand.push({a:N.indexOf(kps[i]), b:N.indexOf(kps[j]), w:shared.length});
+  }
+  cand.sort((x,y)=>y.w-x.w);
+  cand.slice(0,12).forEach(c=>L.push({a:c.a, b:c.b, kind:"cross", color:"#7E8CA0", rest:330, w:c.w}));
+
+  // 邻接表
+  G.adj = N.map(()=>new Set());
+  L.forEach(l=>{ G.adj[l.a].add(l.b); G.adj[l.b].add(l.a); });
+
+  // defs：辉光 + 柔和阴影滤镜
+  const defs = document.createElementNS(NS,"defs");
+  defs.innerHTML = `
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softshadow" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="0" dy="1.6" stdDeviation="2.2" flood-color="rgba(0,0,0,.35)"/>
+    </filter>`;
+  svg.appendChild(defs);
+
+  const root = document.createElementNS(NS,"g");
+  const gl = document.createElementNS(NS,"g");
+  const gn = document.createElementNS(NS,"g");
+  root.setAttribute("id","groot"); gl.setAttribute("id","glinks"); gn.setAttribute("id","gnodes");
+  root.appendChild(gl); root.appendChild(gn); svg.appendChild(root);
+  G.rootG = root;
+
+  L.forEach(l=>{
+    l.el = document.createElementNS(NS,"line");
+    l.el.setAttribute("stroke", l.color);
+    l.el.setAttribute("stroke-width", l.kind==="tree"?1.7:1.2);
+    l.el.setAttribute("opacity", l.kind==="tree"?0.5:0.45);
+    if (l.kind==="cross") l.el.setAttribute("stroke-dasharray","5 5");
+    gl.appendChild(l.el);
+  });
+  N.forEach(n=>{
+    const g = document.createElementNS(NS,"g");
+    g.setAttribute("class","gnode");
+    const halo = document.createElementNS(NS,"circle");
+    halo.setAttribute("r", n.r+3.5); halo.setAttribute("fill", n.color);
+    halo.setAttribute("opacity", n.type==="kp"?0.22:0.30);
+    g.appendChild(halo);
+    const c = document.createElementNS(NS,"circle");
+    c.setAttribute("r", n.r);
+    c.setAttribute("fill", n.color);
+    c.setAttribute("fill-opacity", n.type==="kp"?0.95:1);
+    if (n.type==="kp"){ c.setAttribute("stroke", starColor(n.stars)); c.setAttribute("stroke-width",2.6); }
+    else { c.setAttribute("stroke","rgba(255,255,255,.35)"); c.setAttribute("stroke-width",1.6); }
+    c.setAttribute("filter","url(#softshadow)");
+    g.appendChild(c);
+    const t = document.createElementNS(NS,"text");
+    t.textContent = n.label.length>16? n.label.slice(0,15)+"…" : n.label;
+    t.setAttribute("x", n.r+7); t.setAttribute("y", 4.5);
+    t.setAttribute("font-size", n.type==="root"?14:(n.type==="ch"?12.5:11));
+    t.setAttribute("font-weight", n.type==="kp"?"normal":"bold");
+    t.setAttribute("fill", n.type==="kp"?"var(--glabel)":"var(--glabel)");
+    t.setAttribute("style","fill:var(--glabel)");
+    g.appendChild(t);
+    const tip = document.createElementNS(NS,"title");
+    tip.textContent = n.type==="kp"
+      ? `${n.label}｜${n.stars}星｜真题命中${n.hits}次` : n.label;
+    g.appendChild(tip);
+    n.el = g; n.txt = t; gn.appendChild(g);
+    const idx = N.indexOf(n);
+
+    g.addEventListener("mouseenter", ()=>{ hoverIdx = idx; highlight(idx); });
+    g.addEventListener("mouseleave", ()=>{ hoverIdx = -1; clearHighlight(); });
+    g.addEventListener("mousedown", e=>{
+      e.stopPropagation();
+      nodeDrag = {n, x0:e.clientX, y0:e.clientY, moved:false};
+      G.alpha = Math.max(G.alpha, 0.3); startSim();
+    });
+    g.addEventListener("click", ()=>{
+      if (n.type==="kp" && !nodeDrag && !g.__dragged) jumpToKp(n.id);
+    });
+  });
+
+  // 图例
+  let lg = "";
+  DATA.chapters.forEach((ch,i)=>{
+    lg += `<div><i style="background:${GCH[i%GCH.length]}"></i>${esc(ch.title.length>14?ch.title.slice(0,13)+"…":ch.title)}</div>`;
+  });
+  lg += `<div style="margin-top:6px;border-top:1px solid var(--line);padding-top:6px">
+    <span class="sw"></span>考点关联（共享术语）<br>
+    <i style="background:#7FB3E8"></i>节点大小≈星级+命中<br>
+    <i style="background:transparent;border:2px solid ${SC[5]}"></i>外环色＝重要度</div>`;
+  document.getElementById("glegend").innerHTML = lg;
+
+  // 画布交互
+  const box = document.getElementById("gsvgBox");
+  svg.addEventListener("mousedown", e=>{
+    panDrag = {x0:e.clientX, y0:e.clientY, tx0:G.tx, ty0:G.ty};
+  });
+  window.addEventListener("mousemove", e=>{
+    if (nodeDrag){
+      const rect = box.getBoundingClientRect();
+      const wx = (e.clientX-rect.left-G.tx)/G.scale, wy = (e.clientY-rect.top-G.ty)/G.scale;
+      nodeDrag.n.x = wx; nodeDrag.n.y = wy;
+      nodeDrag.n.vx = 0; nodeDrag.n.vy = 0;
+      if (Math.hypot(e.clientX-nodeDrag.x0, e.clientY-nodeDrag.y0) > 5){
+        nodeDrag.moved = true; nodeDrag.n.el.__dragged = true;
+      }
+    } else if (panDrag){
+      G.tx = panDrag.tx0 + (e.clientX-panDrag.x0);
+      G.ty = panDrag.ty0 + (e.clientY-panDrag.y0);
+      applyT();
+    }
+  });
+  window.addEventListener("mouseup", ()=>{
+    if (nodeDrag && nodeDrag.moved){
+      const el = nodeDrag.n.el;
+      setTimeout(()=>{ el.__dragged = false; }, 60);
+    }
+    nodeDrag = null; panDrag = null;
+  });
+  box.addEventListener("wheel", e=>{
+    e.preventDefault();
+    const rect = box.getBoundingClientRect();
+    const mx = e.clientX-rect.left, my = e.clientY-rect.top;
+    const k = e.deltaY>0 ? 0.88 : 1.14;
+    const ns = Math.max(0.22, Math.min(4, G.scale*k));
+    G.tx = mx - (mx-G.tx)*(ns/G.scale);
+    G.ty = my - (my-G.ty)*(ns/G.scale);
+    G.scale = ns; applyT(); updateLabels();
+  }, {passive:false});
+
+  applyT(); updateLabels();
+  G.inited = true;
+}
+
+/* ---- 邻居高亮 ---- */
+function highlight(idx){
+  const hl = new Set([idx]);
+  G.adj[idx].forEach(j=>hl.add(j));
+  G.nodes.forEach((n,i)=>{
+    const on = hl.has(i);
+    n.el.style.opacity = on ? 1 : 0.12;
+    const c = n.el.querySelectorAll("circle")[1];
+    if (c) c.setAttribute("filter", (on && i!==idx) ? "url(#glow)" : "url(#softshadow)");
+    if (i===idx){ const halo=n.el.querySelectorAll("circle")[0]; if(halo) halo.setAttribute("filter","url(#glow)"); }
+    n.__hl = on;
+  });
+  G.links.forEach(l=>{
+    const on = (l.a===idx || l.b===idx);
+    l.el.setAttribute("opacity", on ? 0.95 : 0.06);
+    l.el.setAttribute("stroke-width", (l.kind==="tree"?1.9:1.4) + (on?1.5:0));
+    if (on) l.el.setAttribute("filter","url(#glow)");
+    else l.el.removeAttribute("filter");
+  });
+  updateLabels(true);
+}
+function clearHighlight(){
+  G.nodes.forEach(n=>{
+    n.el.style.opacity = 1;
+    const c = n.el.querySelectorAll("circle")[1];
+    if (c) c.setAttribute("filter","url(#softshadow)");
+    const halo = n.el.querySelectorAll("circle")[0];
+    if (halo) halo.removeAttribute("filter");
+    n.__hl = false;
+  });
+  G.links.forEach(l=>{
+    l.el.setAttribute("opacity", l.kind==="tree"?0.5:0.45);
+    l.el.setAttribute("stroke-width", l.kind==="tree"?1.7:1.2);
+    l.el.removeAttribute("filter");
+  });
+  updateLabels();
+}
+/* ---- 缩放级别控制标签显示 ---- */
+function updateLabels(forceHl){
+  const s = G.scale;
+  G.nodes.forEach(n=>{
+    if (!n.txt) return;
+    let show;
+    if (n.__hl && forceHl) show = true;
+    else if (n.type==="root" || n.type==="ch") show = true;
+    else if (s >= 0.75) show = true;
+    else if (s >= 0.45) show = (n.stars >= 4);
+    else show = false;
+    n.txt.style.display = show ? "" : "none";
+  });
+}
+/* ---- 物理模拟（含数值防护，防 NaN/Infinity 污染渲染） ---- */
+function simStep(){
+  const a = G.alpha, N = G.nodes;
+  if (!isFinite(a) || a <= 0) return;
+  for (let i=0;i<N.length;i++) for (let j=i+1;j<N.length;j++){
+    const A=N[i], B=N[j];
+    if (!isFinite(A.x) || !isFinite(B.x)){ A.x = A.x||0; A.y = A.y||0; B.x = B.x||0; B.y = B.y||0; }
+    let dx=B.x-A.x, dy=B.y-A.y, d2=dx*dx+dy*dy;
+    if (d2<1){ dx=Math.random()-.5; dy=Math.random()-.5; d2=dx*dx+dy*dy+.01; }
+const d=Math.sqrt(d2), f=26000*a/d2, fx=dx/d*f, fy=dy/d*f;
+    if (!isFinite(fx) || !isFinite(fy)) continue;
+    A.vx-=fx; A.vy-=fy; B.vx+=fx; B.vy+=fy;
+  }
+  G.links.forEach(l=>{
+    const A=G.nodes[l.a], B=G.nodes[l.b];
+    const dx=B.x-A.x, dy=B.y-A.y, d=Math.max(Math.sqrt(dx*dx+dy*dy),1);
+    const f=(d-l.rest)*0.018*a, fx=dx/d*f, fy=dy/d*f;
+    if (!isFinite(fx)) return;
+    A.vx+=fx; A.vy+=fy; B.vx-=fx; B.vy-=fy;
+  });
+  N.forEach(n=>{
+    if (!isFinite(n.x)) n.x = 0; if (!isFinite(n.y)) n.y = 0;
+    n.vx -= n.x*0.0012*a; n.vy -= n.y*0.0012*a;
+    n.vx *= 0.86; n.vy *= 0.86;
+    n.x += n.vx; n.y += n.vy;
+    n.x = Math.max(-2400, Math.min(2400, n.x));
+    n.y = Math.max(-1800, Math.min(1800, n.y));
+  });
+  G.alpha *= 0.992;
+}
+function renderGraph(){
+  G.links.forEach(l=>{
+    const A=G.nodes[l.a], B=G.nodes[l.b];
+    l.el.setAttribute("x1", isFinite(A.x)?A.x:0); l.el.setAttribute("y1", isFinite(A.y)?A.y:0);
+    l.el.setAttribute("x2", isFinite(B.x)?B.x:0); l.el.setAttribute("y2", isFinite(B.y)?B.y:0);
+  });
+  G.nodes.forEach(n=>{
+    const x = isFinite(n.x)?n.x:0, y = isFinite(n.y)?n.y:0;
+    n.el.setAttribute("transform",`translate(${x},${y})`);
+  });
+}
+function fitView(){
+  const N = G.nodes, box = document.getElementById("gsvgBox");
+  const xs=N.map(n=>n.x), ys=N.map(n=>n.y);
+  const minX=Math.min(...xs), maxX=Math.max(...xs), minY=Math.min(...ys), maxY=Math.max(...ys);
+  const bw=maxX-minX+200, bh=maxY-minY+200;
+  if (!isFinite(bw) || bw <= 10 || !isFinite(bh) || bh <= 10) return;   // 防护
+  const r=box.getBoundingClientRect();
+  if (r.width <= 0 || r.height <= 0) return;
+  G.scale = Math.min(r.width/bw, r.height/bh, 1.5);
+  G.tx = r.width/2 - (minX+maxX)/2*G.scale;
+  G.ty = r.height/2 - (minY+maxY)/2*G.scale;
+  applyT(); updateLabels();
+}
+function gFit(){ fitView(); }
+function gRelayout(){
+  G.nodes.forEach(n=>{ n.x=(Math.random()-.5)*500; n.y=(Math.random()-.5)*500; n.vx=0; n.vy=0; });
+  G.fitted = false; G.frames = 0; G.alpha = 1; startSim();
+}
+function applyT(){
+  if (G.rootG) G.rootG.setAttribute("transform",`translate(${G.tx},${G.ty}) scale(${G.scale})`);
+}
+function loop(){
+  if (G.alpha > 0.015){
+    simStep(); renderGraph(); G.frames++;
+    if (!G.fitted && G.frames > 70){ fitView(); G.fitted = true; }
+    requestAnimationFrame(loop);
+  } else { renderGraph(); G.running = false; }
+}
+function startSim(){
+  if (!G.running){ G.running = true; requestAnimationFrame(loop); }
+}
+
+/* ================= 自测版（列表式 + 答案模糊揭晓，每次打开打乱） ================= */
+const quiz = {order:[], revealed:{}, marks:{}};
+function openQuiz(){
+  const all = [];
+  DATA.chapters.forEach(ch=>(ch.knowledge_points||[]).forEach(kp=>all.push(kp)));
+  quiz.order = shuffle(all.slice());   // 每次打开/重新打乱都重新乱序
+  quiz.revealed = {}; quiz.marks = {};
+  renderQuiz();
+}
+function quizCounts(){
+  const cs = {ok:0, ag:0};
+  Object.values(quiz.marks).forEach(m=>{ if (m==="ok") cs.ok++; else if (m==="again") cs.ag++; });
+  return cs;
+}
+function renderQuiz(){
+  const box = document.getElementById("quizView");
+  const total = quiz.order.length;
+  if (!total){
+    box.innerHTML = `<div class="q-summary"><h2>📝 暂无自测题目</h2>
+      <p style="color:var(--muted);font-size:13px;margin-top:8px">当前复习数据没有知识点。</p></div>`;
+    return;
+  }
+  const cs = quizCounts();
+  const revN = Object.keys(quiz.revealed).length;
+  const pct = total ? Math.round(revN/total*100) : 0;
+
+  let html = `<div class="q-meta" style="justify-content:space-between;align-items:center;flex-wrap:wrap">
+    <span>共 <b>${total}</b> 题 · 每次打开自动打乱顺序</span>
+    <span>已揭晓 <b>${revN}</b>/${total}（${pct}%）</span>
+    <span>😊 <b>${cs.ok}</b> ｜ 😕 <b>${cs.ag}</b></span>
+  </div>
+  <div class="q-progress"><i style="width:${pct}%"></i></div>`;
+
+  quiz.order.forEach((kp, idx)=>{
+    const key = kp.id;
+    const st = kp.importance||0;
+    const hits = (kp.stats && kp.stats.hits)?`<span class="hits">真题命中 ${kp.stats.hits} 次</span>`:"";
+    const dim = kp.dimension?`<span class="badge dim">${esc(kp.dimension)}</span>`:"";
+    const shown = !!quiz.revealed[key];
+    const mark = quiz.marks[key];
+    const body = (kp.content||[]).map(p=>`<p>${esc(p)}</p>`).join("") +
+      (kp.examples||[]).map(e=>`<div class="ex">▶ ${esc(e)}</div>`).join("");
+    const mOk = mark==="ok", mAg = mark==="again";
+    html += `<div class="kp q-card${shown?" revealed":""}" id="qid-${esc(key)}">
+      <div class="kp-head"><span class="num">${idx+1}. ${esc(kp.title)}</span>
+        <span style="display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap">
+          <span style="color:${starColor(st)}">${starStr(st)}</span>${dim}${hits}</span>
+      </div>
+      <div class="quiz-awrap">
+        <div class="kp-body quiz-body">${body}</div>
+        ${shown?"":`<div class="quiz-mask" onclick="quizReveal('${escJs(key)}')"><span>👁️ 点击揭晓答案</span></div>`}
+      </div>
+      <div class="q-btns" style="margin-top:12px">
+        <button class="btn ${shown?"btn-ghost":"btn-primary"}" onclick="quizReveal('${escJs(key)}')">${shown?"🙈 收起答案":"👁️ 揭晓答案"}</button>
+        <button class="btn ${mOk?"btn-ok":"btn-ghost"}" onclick="quizMark('${escJs(key)}','ok')">😊 已掌握</button>
+        <button class="btn ${mAg?"btn-again":"btn-ghost"}" onclick="quizMark('${escJs(key)}','again')">😕 再看看</button>
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="q-btns" style="justify-content:center;margin-top:22px">
+    <button class="btn btn-primary" onclick="openQuiz()">🔄 重新打乱顺序</button>
+    <button class="btn btn-ghost" onclick="switchView('content')">📖 返回复习资料版</button>
+  </div>`;
+  box.innerHTML = html;
+}
+function quizReveal(key){ quiz.revealed[key] = !quiz.revealed[key]; renderQuiz(); }
+function quizMark(key, role){ quiz.marks[key] = quiz.marks[key]===role ? undefined : role; renderQuiz(); }
+
+/* ================= 预测试卷 ================= */
+const EXAM = {papers:(DATA.mock_exams||[]), pi:null, answers:{}, multiLocked:{}, done:false};
+function openExams(){
+  if (!EXAM.papers.length){
+    document.getElementById("examView").innerHTML =
+      `<div class="q-summary"><h2>📋 暂无预测试卷</h2>
+      <p style="color:var(--muted);font-size:13px;margin-top:8px">当前复习数据未包含试卷题目。</p></div>`;
+    return;
+  }
+  EXAM.pi = null; EXAM.answers = {}; EXAM.done = false;
+  renderExamPick();
+}
+function renderExamPick(){
+  const cards = EXAM.papers.map((p,i)=>{
+    let qn = 0, score = 0;
+    (p.sections||[]).forEach(s=>(s.questions||[]).forEach(q=>{ qn++; score += (q.score||0); }));
+    return `<div class="exam-card" onclick="startPaper(${i})">
+      <h3>${esc(p.name||("预测试卷 "+String.fromCharCode(65+i)))}</h3>
+      <div class="info">⏱ 时长 ${p.duration||120} 分钟 ｜ 满分 ${p.total_score||100} 分<br>
+      📝 共 ${qn} 题 ｜ 选择题在线判分<br>📄 完成后给出得分与错题清单</div>
+    </div>`;
+  }).join("");
+  document.getElementById("examView").innerHTML =
+    `<div class="q-summary"><h2>📋 选择一套预测试卷</h2>
+    <p style="color:var(--muted);font-size:13px;margin-top:6px">建议闭卷作答：选择题点击选项即时判分，主观题先自答再对照参考答案。</p>
+    <div class="exam-pick" style="margin-top:14px">${cards}</div></div>`;
+}
+function startPaper(i){ EXAM.pi = i; EXAM.answers = {}; EXAM.multiLocked = {}; EXAM.done = false; renderPaper(); }
+function qKey(si, qi){ return si+"-"+qi; }
+function isLetterFillQ(q){
+  // 字母填空题：答案为单个字母，或「字母 + 括号解释」（如 B、A（boost））
+  // 不匹配完整单词/短语填空（如 responsibility）
+  return !!(q && q.type === "fill" && /^[A-Z](?:\s*[（(][^）)]*[）)])?$/i.test(String(q.answer||"").trim()));
+}
+function answerLetter(q){
+  const m = String(q.answer||"").trim().match(/^[A-Za-z]/);
+  return m ? m[0].toUpperCase() : "";
+}
+function isMultiQ(q){
+  // 多选题：答案为 2 个及以上纯字母组合（如 ABCDE / BD），type 建议标注 multi
+  return /^[A-Za-z]{2,}$/.test(String(q.answer||"").trim());
+}
+function answerLetters(q){
+  return String(q.answer||"").trim().toUpperCase().split("").sort();
+}
+function renderStimulus(stim){
+  const list = Array.isArray(stim) ? stim : [stim];
+  return list.filter(s=>s && typeof s==="object").map(s=>{
+    const paras = (s.paragraphs && s.paragraphs.length) ? s.paragraphs : (s.text ? [s.text] : []);
+    return `<div class="material-box">` +
+      (s.title ? `<h4>${esc(s.title)}</h4>` : "") +
+      (s.note ? `<div class="note">${esc(s.note)}</div>` : "") +
+      paras.map(p=>`<p>${esc(p)}</p>`).join("") +
+      (s.source ? `<div class="src">📎 来源：${esc(s.source)}</div>` : "") +
+      `</div>`;
+  }).join("");
+}
+function stimKey(s){
+  if (!s || typeof s !== "object") return null;
+  return (s.title||"") + "\\u0001" + (s.text||"") + "\\u0001" + (s.paragraphs||[]).join("\\u0002");
+}
+function renderPaper(){
+  const p = EXAM.papers[EXAM.pi];
+  let html = `<div class="paper-head">
+    <div class="course">《${esc(courseName)}》</div>
+    <div class="name">${esc(p.name||"")}</div>
+    <div class="info">考试时长 ${p.duration||120} 分钟 ｜ 满分 ${p.total_score||100} 分 ｜ 在线作答</div>
+  </div>`;
+  let qnum = 0;
+  (p.sections||[]).forEach((sec,si)=>{
+    html += `<div class="sec-title">${esc(sec.type||"")}</div>`;
+    if (sec.instruction) html += `<div class="sec-ins">${esc(sec.instruction)}</div>`;
+    let lastStimKey = sec.stimulus ? stimKey(sec.stimulus) : null;
+    if (sec.stimulus) html += renderStimulus(sec.stimulus);
+    (sec.questions||[]).forEach((q,qi)=>{
+      qnum++;
+      const key = qKey(si,qi);
+      const isChoice = !!(q.options && q.options.length);
+      const isLetterFill = !isChoice && isLetterFillQ(q);
+      const answered = EXAM.answers[key];
+      const typeTag = q.type==="listening" ? "<span class=\"badge dim\">听力</span> " : (q.type==="reading" ? "<span class='badge dim'>阅读</span> " : "");
+      html += `<div class="q-item" id="q-${si}-${qi}">
+        <div class="stem">${typeTag}${qnum}. ${esc(q.q)} <span class="score-tag">（${q.score||""} 分）</span></div>`;
+      if (q.stimulus && stimKey(q.stimulus) !== lastStimKey) {
+        html += renderStimulus(q.stimulus);
+        lastStimKey = stimKey(q.stimulus);
+      }
+      if (isChoice){
+        const isMulti = isMultiQ(q);
+        const sel = Array.isArray(answered) ? answered : [];
+        const locked = isMulti ? !!EXAM.multiLocked[key] : (answered != null);
+        html += `<div class="opts">` + q.options.map((opt,oi)=>{
+          const letter = opt.trim()[0];
+          let cls = "opt";
+          if (isMulti){
+            if (sel.indexOf(letter) >= 0) cls += " selected";
+            if (locked || EXAM.done){
+              cls += " disabled";
+              if (answerLetters(q).indexOf(letter.toUpperCase()) >= 0) cls += " right";
+            }
+            const handler = `toggleMulti(${si},${qi},'${letter}')`;
+            return `<button class="${cls}" onclick="${handler}">${esc(opt)}</button>`;
+          }
+          if (answered != null){
+            cls += " disabled";
+            if (letter.toUpperCase() === answerLetter(q)) cls += " right";
+            else if (letter === answered) cls += " wrong";
+          }
+          return `<button class="${cls}" onclick="answerChoice(${si},${qi},'${letter}')">${esc(opt)}</button>`;
+        }).join("") + `</div>`;
+        if (isMulti){
+          if (!locked && !EXAM.done){
+            html += `<div class="q-btns" style="margin-top:10px">
+              <button class="btn btn-primary" onclick="commitMulti(${si},${qi})">✅ 确认本题（已选 ${sel.length} 项，多选）</button></div>`;
+          }
+          if (locked || EXAM.done){
+            const right = sel.slice().sort().join("") === answerLetters(q).join("");
+            html += `<div class="ans-note ${right?"right":"wrong"}">
+              ${right?"✔ 回答正确":"✘ 回答错误，正确答案："+esc(q.answer)}${q.analysis?"<br>解析："+esc(q.analysis):""}</div>`;
+          }
+        } else if (answered != null){
+          const right = (String(answered).toUpperCase() === answerLetter(q));
+          html += `<div class="ans-note ${right?"right":"wrong"}">
+            ${right?"✔ 回答正确":"✘ 回答错误，正确答案："+esc(q.answer)}${q.analysis?"<br>解析："+esc(q.analysis):""}</div>`;
+        }
+      } else if (isLetterFill){
+        const val = (answered != null && answered !== true) ? answered : "";
+        html += `<div class="opts" style="margin-top:10px">
+          <input type="text" maxlength="1" placeholder="输入答案字母（如 B）" value="${esc(val)}"
+            oninput="answerFillInput(${si},${qi},this.value)" onchange="answerFillCommit(${si},${qi})"
+            ${EXAM.done?"disabled":""}
+            style="padding:9px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:13px;background:var(--card);color:var(--text);width:220px"></div>`;
+        if (answered != null && answered !== true && answered !== ""){
+          const right = String(answered).toUpperCase() === answerLetter(q);
+          html += `<div class="ans-note ${right?"right":"wrong"}">
+            ${right?"✔ 回答正确":"✘ 回答错误，正确答案："+esc(q.answer)}${q.analysis?"<br>解析："+esc(q.analysis):""}</div>`;
+        }
+      } else {
+        const show = answered === true;
+        html += `<div class="q-btns" style="margin-top:10px">
+          <button class="btn ${show?"btn-ghost":"btn-primary"}" onclick="toggleEssay(${si},${qi})">${show?"🙈 收起参考答案":"👁️ 查看参考答案"}</button></div>`;
+        if (show){
+          html += `<div class="q-answer"><p>${esc(q.answer||"").replace(/\n/g,"<br>")}</p>
+            ${q.analysis?`<div class="ex">解析：${esc(q.analysis)}</div>`:""}</div>`;
+        }
+      }
+      html += `</div>`;
+    });
+  });
+  const totalQ = (p.sections||[]).reduce((a,s)=>a+(s.questions||[]).length,0);
+  const answeredN = Object.keys(EXAM.answers).filter(k=>{
+    const v = EXAM.answers[k];
+    if (Array.isArray(v)) return v.length > 0 && !!EXAM.multiLocked[k];
+    return v != null && v !== "" && v !== true;
+  }).length;
+  html += `<div class="exam-float">
+    <button class="btn btn-primary" onclick="submitPaper()">✅ 交卷查看得分（已答 ${answeredN}/${totalQ}）</button>
+    <button class="btn btn-ghost" onclick="openExams()">↩ 换一套卷</button>
+  </div>`;
+  document.getElementById("examView").innerHTML = html;
+}
+function answerChoice(si, qi, letter){
+  if (EXAM.done) return;
+  const key = qKey(si,qi);
+  if (EXAM.answers[key] != null) return;
+  EXAM.answers[key] = letter;
+  renderPaper();
+}
+function toggleMulti(si, qi, letter){
+  if (EXAM.done) return;
+  const key = qKey(si,qi);
+  if (EXAM.multiLocked[key]) return;
+  let sel = Array.isArray(EXAM.answers[key]) ? EXAM.answers[key].slice() : [];
+  const i = sel.indexOf(letter);
+  if (i >= 0) sel.splice(i, 1); else sel.push(letter);
+  EXAM.answers[key] = sel;
+  renderPaper();
+}
+function commitMulti(si, qi){
+  if (EXAM.done) return;
+  const key = qKey(si,qi);
+  const sel = Array.isArray(EXAM.answers[key]) ? EXAM.answers[key] : [];
+  if (!sel.length) return;
+  EXAM.multiLocked[key] = true;
+  renderPaper();
+}
+function answerFillInput(si, qi, val){
+  if (EXAM.done) return;
+  const key = qKey(si,qi);
+  EXAM.answers[key] = String(val).trim().toUpperCase() || null;
+}
+function answerFillCommit(si, qi){ renderPaper(); }
+function toggleEssay(si, qi){
+  const key = qKey(si,qi);
+  EXAM.answers[key] = EXAM.answers[key] === true ? null : true;
+  renderPaper();
+}
+function submitPaper(){
+  const p = EXAM.papers[EXAM.pi];
+  let qnum = 0, objTotal = 0, objRight = 0, objScore = 0, objFull = 0, subjFull = 0;
+  const wrongs = [], unanswereds = [];
+  (p.sections||[]).forEach((sec,si)=>{
+    (sec.questions||[]).forEach((q,qi)=>{
+      qnum++;
+      const key = qKey(si,qi);
+      const isChoice = !!(q.options && q.options.length);
+      const isMulti = isChoice && isMultiQ(q);
+      const isLetterFill = !isChoice && isLetterFillQ(q);
+      const isObjective = isChoice || isLetterFill;
+      const a = EXAM.answers[key];
+      if (isObjective){
+        objTotal++; objFull += (q.score||0);
+        if (isMulti){
+          const sel = Array.isArray(a) ? a : [];
+          if (!sel.length || !EXAM.multiLocked[key]){ unanswereds.push({n:qnum,q,si,qi}); }
+          else if (sel.slice().sort().join("") === answerLetters(q).join("")){ objRight++; objScore += (q.score||0); }
+          else wrongs.push({n:qnum,q,si,qi});
+        } else if (a == null || a === "" || a === true){ unanswereds.push({n:qnum,q,si,qi}); }
+        else if (String(a).toUpperCase() === answerLetter(q)){ objRight++; objScore += (q.score||0); }
+        else wrongs.push({n:qnum,q,si,qi});
+      } else {
+        subjFull += (q.score||0);
+        if (a !== true){ unanswereds.push({n:qnum,q,si,qi}); }
+      }
+    });
+  });
+  EXAM.done = true;
+  const pct = objFull ? Math.round(objScore/objFull*100) : 0;
+  let html = `<div class="exam-score">
+    <h2 style="color:var(--primary-dark);font-size:20px">✅ 交卷成功（${esc(p.name||"")}）</h2>
+    <div style="margin:10px 0"><b class="big">${objScore}</b><span style="color:var(--muted)"> / ${objFull} 分（客观题自动判分）</span></div>
+    <div class="subs">
+      <div><b>${objRight}/${objTotal}</b>客观题正确</div>
+      <div><b>${pct}%</b>客观题得分率</div>
+      <div><b>${unanswereds.length}</b>未作答/未查看</div>
+    </div>
+    ${subjFull?`<p style="margin-top:12px;color:var(--muted);font-size:12.5px">主观题（写作/翻译/简答）共 ${subjFull} 分，需自行对照参考答案评分，不计入自动判分。</p>`:""}`;
+  const items = (arr, title, styleCls) => arr.length ? `
+    <h3 style="font-size:14px;margin-top:16px;text-align:left">${title}</h3>
+    <div class="${styleCls}">${arr.map(w=>
+      `<a href="javascript:void(0)" onclick="jumpToKp('${escJs(w.q.kp_id||"")}');scrollToQ(${w.si},${w.qi})">
+        第${w.n}题：${esc(String(w.q.q).slice(0,42))}…${w.q.answer?("｜答案："+esc(w.q.answer)):""}</a>`).join("")}</div>` : "";
+  html += items(wrongs, "❌ 答错的题目（点击回看解析）", "wrong-list");
+  html += items(unanswereds, "⏳ 未作答/未查看答案的题目", "wrong-list");
+  html += `<div class="q-btns" style="justify-content:center">
+    <button class="btn btn-primary" onclick="startPaper(${EXAM.pi})">🔄 重做本卷</button>
+    <button class="btn btn-ghost" onclick="openExams()">↩ 换一套卷</button>
+    <button class="btn btn-ghost" onclick="switchView('content')">📖 回去复习</button>
+  </div></div>`;
+  document.getElementById("examView").innerHTML = html;
+}
+function scrollToQ(si, qi){
+  switchView("exam");
+  setTimeout(()=>{ const el = document.getElementById("q-"+si+"-"+qi);
+    if (el) el.scrollIntoView({behavior:"smooth",block:"center"}); }, 80);
+}
+
+/* ================= 视图切换 ================= */
+function switchView(v){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active", t.dataset.view===v));
+  document.getElementById("contentWrap").classList.toggle("hidden", v!=="content");
+  document.getElementById("graphView").classList.toggle("hidden", v!=="graph");
+  document.getElementById("quizView").classList.toggle("hidden", v!=="quiz");
+  document.getElementById("examView").classList.toggle("hidden", v!=="exam");
+  document.getElementById("filterChips").style.display = v==="content" ? "flex" : "none";
+  if (v==="graph"){
+    if (!G.inited) buildGraph();
+    G.alpha = Math.max(G.alpha, 0.25); startSim();
+  }
+  if (v==="quiz") openQuiz();
+  if (v==="exam") openExams();
+}
+
+loadTheme();
+applyTheme();
+buildContent();
+</script>
+</body>
+</html>
